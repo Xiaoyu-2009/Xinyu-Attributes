@@ -19,6 +19,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.FIRE_RESISTANCE);
             // 冰冻抗性
             event.add(entityType, AttributesRegistry.FREEZE_RESISTANCE);
+            // 毒素抗性
+            event.add(entityType, AttributesRegistry.POISON_RESISTANCE);
         }
     }
 }
