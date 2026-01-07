@@ -23,6 +23,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.POISON_RESISTANCE);
             // 凋零抗性
             event.add(entityType, AttributesRegistry.WITHER_RESISTANCE);
+            // 声波抗性
+            event.add(entityType, AttributesRegistry.SONIC_RESISTANCE);
         }
     }
 }

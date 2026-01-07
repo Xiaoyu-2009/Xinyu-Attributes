@@ -31,4 +31,9 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> WITHER_RESISTANCE = ATTRIBUTES.register("wither_resistance",
         () -> new RangedAttribute("attribute.name.xinyu_attributes.wither_resistance", 0.0F, 0.0, 1.0)
     );
+
+    // 声波抗性
+    public static final DeferredHolder<Attribute, Attribute> SONIC_RESISTANCE = ATTRIBUTES.register("sonic_resistance",
+        () -> new RangedAttribute("attribute.name.xinyu_attributes.sonic_resistance", 0.0F, 0.0, 1.0)
+    );
 }
