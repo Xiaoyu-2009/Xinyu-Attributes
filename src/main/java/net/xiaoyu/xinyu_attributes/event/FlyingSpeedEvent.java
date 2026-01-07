@@ -18,10 +18,8 @@ public class FlyingSpeedEvent {
             AttributeInstance flyingSpeedAttribute = player.getAttribute(AttributesRegistry.FLYING_SPEED);
 
             if (flyingSpeedAttribute.getModifiers().isEmpty()) {
-                // No modifiers, use default flying speed
                 player.getAbilities().setFlyingSpeed(0.05F);
             } else {
-                // Has modifiers, use custom flying speed
                 player.getAbilities().setFlyingSpeed((float) flyingSpeedAttribute.getValue());
             }
 

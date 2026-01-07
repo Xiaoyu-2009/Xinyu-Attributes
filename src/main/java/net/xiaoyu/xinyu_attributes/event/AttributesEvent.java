@@ -13,7 +13,10 @@ public class AttributesEvent {
     @SubscribeEvent
     public static void addEntityAttributes(EntityAttributeModificationEvent event) {
         for (EntityType<? extends LivingEntity> entityType : event.getTypes()) {
+            // 飞行速度
             event.add(entityType, AttributesRegistry.FLYING_SPEED);
+            // 火焰抗性
+            event.add(entityType, AttributesRegistry.FIRE_RESISTANCE);
         }
     }
 }
