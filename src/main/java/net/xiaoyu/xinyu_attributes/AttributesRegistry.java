@@ -10,12 +10,15 @@ public class AttributesRegistry {
     // 飞行速度
     public static final DeferredHolder<Attribute, Attribute> FLYING_SPEED = ATTRIBUTES.register("flying_speed",
         () -> new RangedAttribute("attribute.name.xinyu_attributes.flying_speed", 0.05F, 0.0, Double.MAX_VALUE)
-            .setSyncable(true)
     );
 
     // 火焰抗性
     public static final DeferredHolder<Attribute, Attribute> FIRE_RESISTANCE = ATTRIBUTES.register("fire_resistance",
         () -> new RangedAttribute("attribute.name.xinyu_attributes.fire_resistance", 0.0F, 0.0, 1.0)
-            .setSyncable(true)
+    );
+
+    // 冰冻抗性
+    public static final DeferredHolder<Attribute, Attribute> FREEZE_RESISTANCE = ATTRIBUTES.register("freeze_resistance",
+        () -> new RangedAttribute("attribute.name.xinyu_attributes.freeze_resistance", 0.0F, 0.0, 1.0)
     );
 }

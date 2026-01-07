@@ -17,6 +17,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.FLYING_SPEED);
             // 火焰抗性
             event.add(entityType, AttributesRegistry.FIRE_RESISTANCE);
+            // 冰冻抗性
+            event.add(entityType, AttributesRegistry.FREEZE_RESISTANCE);
         }
     }
 }
