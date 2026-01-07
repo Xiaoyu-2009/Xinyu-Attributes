@@ -2,5 +2,6 @@
     "attribute.name.xinyu_attributes.flying_speed": "Flying Speed",
     "attribute.name.xinyu_attributes.fire_resistance": "Fire Resistance",
     "attribute.name.xinyu_attributes.freeze_resistance": "Freeze Resistance",
-    "attribute.name.xinyu_attributes.poison_resistance": "Poison Resistance"
+    "attribute.name.xinyu_attributes.poison_resistance": "Poison Resistance",
+    "attribute.name.xinyu_attributes.wither_resistance": "Wither Resistance"
 }

@@ -21,6 +21,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.FREEZE_RESISTANCE);
             // 毒素抗性
             event.add(entityType, AttributesRegistry.POISON_RESISTANCE);
+            // 凋零抗性
+            event.add(entityType, AttributesRegistry.WITHER_RESISTANCE);
         }
     }
 }

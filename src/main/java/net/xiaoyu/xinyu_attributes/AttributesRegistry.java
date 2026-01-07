@@ -26,4 +26,9 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> POISON_RESISTANCE = ATTRIBUTES.register("poison_resistance",
         () -> new RangedAttribute("attribute.name.xinyu_attributes.poison_resistance", 0.0F, 0.0, 1.0)
     );
+
+    // 凋零抗性
+    public static final DeferredHolder<Attribute, Attribute> WITHER_RESISTANCE = ATTRIBUTES.register("wither_resistance",
+        () -> new RangedAttribute("attribute.name.xinyu_attributes.wither_resistance", 0.0F, 0.0, 1.0)
+    );
 }
