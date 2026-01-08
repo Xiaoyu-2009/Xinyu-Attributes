@@ -13,8 +13,6 @@ public class AttributesEvent {
     @SubscribeEvent
     public static void addEntityAttributes(EntityAttributeModificationEvent event) {
         for (EntityType<? extends LivingEntity> entityType : event.getTypes()) {
-            // 飞行速度
-            event.add(entityType, AttributesRegistry.FLYING_SPEED);
             // 火焰抗性
             event.add(entityType, AttributesRegistry.FIRE_RESISTANCE);
             // 冰冻抗性
@@ -25,6 +23,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.WITHER_RESISTANCE);
             // 声波抗性
             event.add(entityType, AttributesRegistry.SONIC_RESISTANCE);
+            // 单次伤害上限
+            event.add(entityType, AttributesRegistry.SINGLE_DAMAGE_LIMIT);
         }
     }
 }
