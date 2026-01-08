@@ -29,6 +29,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.SINGLE_PERCENTAGE_DAMAGE_LIMIT);
             // 穿墙
             event.add(entityType, AttributesRegistry.PHASING);
+            // 弹射物抗性
+            event.add(entityType, AttributesRegistry.PROJECTILE_RESISTANCE);
         }
     }
 }

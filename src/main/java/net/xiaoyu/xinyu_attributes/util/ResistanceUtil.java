@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.tags.DamageTypeTags;
 
 public class ResistanceUtil {;
     public static float applyResistance(LivingEntity entity, DamageSource source, float originalAmount) {
@@ -36,6 +37,11 @@ public class ResistanceUtil {;
         // 凋零抗性
         if (source.is(TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "is_wither")))) {
             originalAmount = (float) (originalAmount * (1.0 - Math.min(1.0, entity.getAttributeValue(AttributesRegistry.WITHER_RESISTANCE))));
+        }
+        
+        // 弹射物抗性
+        if (source.is(DamageTypeTags.IS_PROJECTILE)) {
+            originalAmount = (float) (originalAmount * (1.0 - Math.min(1.0, entity.getAttributeValue(AttributesRegistry.PROJECTILE_RESISTANCE))));
         }
         
         return originalAmount;
