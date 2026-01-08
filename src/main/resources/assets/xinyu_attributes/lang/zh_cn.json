@@ -4,8 +4,12 @@
     "attribute.name.xinyu_attributes.poison_resistance": "毒素抗性",
     "attribute.name.xinyu_attributes.wither_resistance": "凋零抗性",
     "attribute.name.xinyu_attributes.sonic_resistance": "声波抗性",
+    "attribute.name.xinyu_attributes.projectile_resistance": "弹射物抗性",
     "attribute.name.xinyu_attributes.single_damage_limit": "单次伤害上限",
     "attribute.name.xinyu_attributes.single_percentage_damage_limit": "单次百分比伤害上限",
     "attribute.name.xinyu_attributes.phasing": "穿墙",
-    "attribute.name.xinyu_attributes.projectile_resistance": "弹射物抗性"
+    
+    "death.attack.xinyu_attributes.armor_piercing": "%1$s被破甲伤害击败了",
+    "death.attack.xinyu_attributes.armor_piercing.item": "%1$s被%2$s用%3$s造成破甲伤害击败了",
+    "death.attack.xinyu_attributes.armor_piercing.player": "%1$s在与%2$s战斗时因破甲伤害被击败了"
 }

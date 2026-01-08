@@ -32,6 +32,11 @@ public class AttributesRegistry {
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".sonic_resistance", 0.0, 0.0, 1.0)
     );
 
+    // 弹射物抗性
+    public static final DeferredHolder<Attribute, Attribute> PROJECTILE_RESISTANCE = ATTRIBUTES.register("projectile_resistance",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".projectile_resistance", 0.0, 0.0, 1.0)
+    );
+
     // 单次伤害上限
     public static final DeferredHolder<Attribute, Attribute> SINGLE_DAMAGE_LIMIT = ATTRIBUTES.register("single_damage_limit",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".single_damage_limit", 0.0, 0.0, Double.MAX_VALUE)
@@ -45,10 +50,5 @@ public class AttributesRegistry {
     // 穿墙
     public static final DeferredHolder<Attribute, Attribute> PHASING = ATTRIBUTES.register("phasing",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".phasing", 0.0, 0.0, 0.0)
-    );
-
-    // 弹射物抗性
-    public static final DeferredHolder<Attribute, Attribute> PROJECTILE_RESISTANCE = ATTRIBUTES.register("projectile_resistance",
-        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".projectile_resistance", 0.0, 0.0, 1.0)
     );
 }

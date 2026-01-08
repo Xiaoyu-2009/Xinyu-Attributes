@@ -23,14 +23,14 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.WITHER_RESISTANCE);
             // 声波抗性
             event.add(entityType, AttributesRegistry.SONIC_RESISTANCE);
+            // 弹射物抗性
+            event.add(entityType, AttributesRegistry.PROJECTILE_RESISTANCE);
             // 单次伤害上限
             event.add(entityType, AttributesRegistry.SINGLE_DAMAGE_LIMIT);
             // 单次百分比伤害上限
             event.add(entityType, AttributesRegistry.SINGLE_PERCENTAGE_DAMAGE_LIMIT);
             // 穿墙
             event.add(entityType, AttributesRegistry.PHASING);
-            // 弹射物抗性
-            event.add(entityType, AttributesRegistry.PROJECTILE_RESISTANCE);
         }
     }
 }

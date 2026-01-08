@@ -1,6 +1,6 @@
 package net.xiaoyu.xinyu_attributes.mixin;
 
-import net.xiaoyu.xinyu_attributes.AttributesRegistry;
+import net.xiaoyu.xinyu_attributes.*;
 import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-    
+
     @ModifyVariable(method = "hurt", at = @At("HEAD"), ordinal = 0, argsOnly = true)
     private float modifyDamageAmount(float originalAmount, DamageSource source) {
         LivingEntity entity = (LivingEntity) (Object) this;

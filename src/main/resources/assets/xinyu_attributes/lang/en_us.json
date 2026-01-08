@@ -4,8 +4,12 @@
     "attribute.name.xinyu_attributes.poison_resistance": "Poison Resistance",
     "attribute.name.xinyu_attributes.wither_resistance": "Wither Resistance",
     "attribute.name.xinyu_attributes.sonic_resistance": "Sonic Resistance",
+    "attribute.name.xinyu_attributes.projectile_resistance": "Projectile Resistance",
     "attribute.name.xinyu_attributes.single_damage_limit": "Single Damage Limit",
     "attribute.name.xinyu_attributes.single_percentage_damage_limit": "Single Percentage Damage Limit",
     "attribute.name.xinyu_attributes.phasing": "Phasing",
-    "attribute.name.xinyu_attributes.projectile_resistance": "Projectile Resistance"
+    
+    "death.attack.xinyu_attributes.armor_piercing": "%1$s was defeated by armor-piercing damage",
+    "death.attack.xinyu_attributes.armor_piercing.item": "%1$s was defeated by %2$s using %3$s causing armor-piercing damage",
+    "death.attack.xinyu_attributes.armor_piercing.player": "%1$s was defeated by armor-piercing damage while fighting %2$s"
 }
