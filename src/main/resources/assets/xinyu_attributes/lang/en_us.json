@@ -4,5 +4,6 @@
     "attribute.name.xinyu_attributes.poison_resistance": "Poison Resistance",
     "attribute.name.xinyu_attributes.wither_resistance": "Wither Resistance",
     "attribute.name.xinyu_attributes.sonic_resistance": "Sonic Resistance",
-    "attribute.name.xinyu_attributes.single_damage_limit": "Single Damage Limit"
+    "attribute.name.xinyu_attributes.single_damage_limit": "Single Damage Limit",
+    "attribute.name.xinyu_attributes.phasing": "Phasing"
 }

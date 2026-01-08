@@ -4,7 +4,8 @@
   "package": "net.xiaoyu.xinyu_attributes.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "BlockStateBaseMixin"
   ],
   "client": [
   ],

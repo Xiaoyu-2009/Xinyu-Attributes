@@ -36,4 +36,9 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> SINGLE_DAMAGE_LIMIT = ATTRIBUTES.register("single_damage_limit",
         () -> new RangedAttribute("attribute.name.xinyu_attributes.single_damage_limit", 0.0, 0.0, Double.MAX_VALUE)
     );
+
+    // 穿墙
+    public static final DeferredHolder<Attribute, Attribute> PHASING = ATTRIBUTES.register("phasing",
+        () -> new RangedAttribute("attribute.name.xinyu_attributes.phasing", 0.0, 0.0, 0.0)
+    );
 }

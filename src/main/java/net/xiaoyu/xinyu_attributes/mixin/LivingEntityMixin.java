@@ -5,9 +5,7 @@ import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.damagesource.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
@@ -21,7 +19,7 @@ public abstract class LivingEntityMixin {
         double damageLimit = entity.getAttributeValue(AttributesRegistry.SINGLE_DAMAGE_LIMIT);
         
         if (!entity.getAttribute(AttributesRegistry.SINGLE_DAMAGE_LIMIT).getModifiers().isEmpty() && 
-            damageLimit > 0 && amountAfterResistance > damageLimit) {
+            damageLimit >= 0 && amountAfterResistance > damageLimit) {
             return (float) damageLimit;
         }
         

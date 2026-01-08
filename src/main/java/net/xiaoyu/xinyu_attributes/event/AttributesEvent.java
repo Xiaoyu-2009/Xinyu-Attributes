@@ -25,6 +25,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.SONIC_RESISTANCE);
             // 单次伤害上限
             event.add(entityType, AttributesRegistry.SINGLE_DAMAGE_LIMIT);
+            // 穿墙
+            event.add(entityType, AttributesRegistry.PHASING);
         }
     }
 }
