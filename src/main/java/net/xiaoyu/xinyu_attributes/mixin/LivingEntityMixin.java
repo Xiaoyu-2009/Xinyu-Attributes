@@ -2,7 +2,7 @@ package net.xiaoyu.xinyu_attributes.mixin;
 
 import net.xiaoyu.xinyu_attributes.AttributesRegistry;
 import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
@@ -27,6 +27,7 @@ public abstract class LivingEntityMixin {
         if (!entity.getAttribute(AttributesRegistry.SINGLE_DAMAGE_LIMIT).getModifiers().isEmpty() && 
             fixedDamageLimit > entity.getMaxHealth()) {
             entity.setHealth(0);
+            //entity.setRemoved(Entity.RemovalReason.KILLED);
         }
         
         if (!entity.getAttribute(AttributesRegistry.SINGLE_PERCENTAGE_DAMAGE_LIMIT).getModifiers().isEmpty() && 

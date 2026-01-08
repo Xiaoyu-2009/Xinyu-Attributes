@@ -11,7 +11,11 @@ public class ResistanceUtil {;
     public static float applyResistance(LivingEntity entity, DamageSource source, float originalAmount) {
         // 火焰抗性
         if (source.is(DamageTypeTags.IS_FIRE)) {
-            originalAmount = (float) (originalAmount * (1.0 - Math.min(1.0, entity.getAttributeValue(AttributesRegistry.FIRE_RESISTANCE))));
+            double fireResistance = entity.getAttributeValue(AttributesRegistry.FIRE_RESISTANCE);
+            if(fireResistance >= 1.0) {
+                entity.clearFire();
+            }
+            originalAmount = (float) (originalAmount * (1.0 - Math.min(1.0, fireResistance)));
         }
         
         // 冰冻抗性
