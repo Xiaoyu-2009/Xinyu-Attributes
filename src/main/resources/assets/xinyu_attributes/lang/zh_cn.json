@@ -5,5 +5,6 @@
     "attribute.name.xinyu_attributes.wither_resistance": "凋零抗性",
     "attribute.name.xinyu_attributes.sonic_resistance": "声波抗性",
     "attribute.name.xinyu_attributes.single_damage_limit": "单次伤害上限",
+    "attribute.name.xinyu_attributes.single_percentage_damage_limit": "单次百分比伤害上限",
     "attribute.name.xinyu_attributes.phasing": "穿墙"
 }
