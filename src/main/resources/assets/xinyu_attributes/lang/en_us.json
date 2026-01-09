@@ -8,6 +8,7 @@
     "attribute.name.xinyu_attributes.single_damage_limit": "Single Damage Limit",
     "attribute.name.xinyu_attributes.single_percentage_damage_limit": "Single Percentage Damage Limit",
     "attribute.name.xinyu_attributes.phasing": "Phasing",
+    "attribute.name.xinyu_attributes.projectile_speed": "Projectile Speed",
     
     "death.attack.xinyu_attributes.armor_piercing": "%1$s was defeated by armor-piercing damage",
     "death.attack.xinyu_attributes.armor_piercing.item": "%1$s was defeated by %2$s using %3$s causing armor-piercing damage",

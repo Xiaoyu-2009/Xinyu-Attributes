@@ -51,4 +51,9 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> PHASING = ATTRIBUTES.register("phasing",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".phasing", 0.0, 0.0, 0.0)
     );
+
+    // 弹射物速度
+    public static final DeferredHolder<Attribute, Attribute> PROJECTILE_SPEED = ATTRIBUTES.register("projectile_speed",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".projectile_speed", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)
+    );
 }
