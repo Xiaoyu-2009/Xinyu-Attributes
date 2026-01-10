@@ -6,12 +6,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.tags.DamageTypeTags;
 
 public class ResistanceUtil {;
     public static float applyResistance(LivingEntity entity, DamageSource source, float originalAmount) {
         // 火焰抗性
-        if (source.is(DamageTypeTags.IS_FIRE)) {
+        if (source.is(TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "is_fire"))) ||
+            source.is(DamageTypeTags.IS_FIRE)) {
             double fireResistance = entity.getAttributeValue(AttributesRegistry.FIRE_RESISTANCE);
             if(fireResistance >= 1.0) {
                 entity.clearFire();
@@ -20,7 +20,8 @@ public class ResistanceUtil {;
         }
         
         // 冰冻抗性
-        if (source.is(DamageTypeTags.IS_FREEZING)) {
+        if (source.is(TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "is_freezing"))) ||
+            source.is(DamageTypeTags.IS_FREEZING)) {
             originalAmount = (float) (originalAmount * (1.0 - Math.min(1.0, entity.getAttributeValue(AttributesRegistry.FREEZE_RESISTANCE))));
         }
         
@@ -40,7 +41,8 @@ public class ResistanceUtil {;
         }
         
         // 弹射物抗性
-        if (source.is(DamageTypeTags.IS_PROJECTILE)) {
+        if (source.is(TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "is_projectile"))) || 
+            source.is(DamageTypeTags.IS_PROJECTILE)) {
             originalAmount = (float) (originalAmount * (1.0 - Math.min(1.0, entity.getAttributeValue(AttributesRegistry.PROJECTILE_RESISTANCE))));
         }
         

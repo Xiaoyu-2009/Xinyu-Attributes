@@ -21,8 +21,8 @@ public abstract class BlockStateBaseMixin {
     private void onGetCollisionShape(BlockGetter blockGetter, BlockPos blockPos, CollisionContext context, CallbackInfoReturnable<VoxelShape> cir) {
         if (context instanceof EntityCollisionContext entityContext) {
             if (entityContext.getEntity() instanceof LivingEntity livingEntity) {
-                if (!livingEntity.getAttribute(AttributesRegistry.PHASING).getModifiers().isEmpty() &&
-                    livingEntity.getAttributeValue(AttributesRegistry.PHASING) >= 0.0) {
+                if (!livingEntity.getAttribute(AttributesRegistry.PHASING).getModifiers().isEmpty() && 
+                    livingEntity.getAttributeValue(AttributesRegistry.PHASING) == 0) {
                     cir.setReturnValue(Shapes.empty());
                 }
             }

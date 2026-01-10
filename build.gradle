@@ -40,6 +40,21 @@ dependencies {
     // 苹果皮
     implementation "curse.maven:appleskin-248787:6616291"
 
+    // 铁魔法
+    implementation "curse.maven:irons-spells-n-spellbooks-855414:7402503"
+
+    // Caelus
+    implementation "curse.maven:caelus-308989:5694215"
+
+    // GeckoLib
+    implementation "curse.maven:geckolib-388172:7415496"
+
+    // playerAnimator
+    implementation "curse.maven:playeranimator-658587:7389814"
+
+    // Curios
+    implementation "curse.maven:curios-309927:6529130"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
