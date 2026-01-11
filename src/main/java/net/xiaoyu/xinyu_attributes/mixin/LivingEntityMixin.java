@@ -1,6 +1,7 @@
 package net.xiaoyu.xinyu_attributes.mixin;
 
-import net.xiaoyu.xinyu_attributes.*;
+import net.xiaoyu.xinyu_attributes.Config;
+import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
@@ -63,5 +64,24 @@ public abstract class LivingEntityMixin {
         if (amountAfterResistance <= 0) {
             cir.cancel();
         }
+    }
+    
+    @ModifyArg(
+        method = "handleRelativeFrictionAndCalculateMovement(Lnet/minecraft/world/phys/Vec3;F)Lnet/minecraft/world/phys/Vec3;",
+        at = @At(
+            value = "INVOKE", 
+            target = "Lnet/minecraft/world/phys/Vec3;<init>(DDD)V", 
+            ordinal = 0
+        ),
+        index = 1
+    )
+    private double modifyClimbingUpSpeed(double vanillaClimbSpeed) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+
+        if (entity.hasEffect(MobEffectsRegistry.CLIMBING_SPEED)) {
+            return Config.CLIMBING_SPEED_VALUE.get();
+        }
+
+        return vanillaClimbSpeed;
     }
 }

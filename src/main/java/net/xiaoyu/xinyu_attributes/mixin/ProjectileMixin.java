@@ -1,6 +1,6 @@
 package net.xiaoyu.xinyu_attributes.mixin;
 
-import net.xiaoyu.xinyu_attributes.AttributesRegistry;
+import net.xiaoyu.xinyu_attributes.registry.AttributesRegistry;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.Projectile;
 import org.spongepowered.asm.mixin.*;

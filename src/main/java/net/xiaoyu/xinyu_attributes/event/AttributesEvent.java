@@ -1,6 +1,6 @@
 package net.xiaoyu.xinyu_attributes.event;
 
-import net.xiaoyu.xinyu_attributes.AttributesRegistry;
+import net.xiaoyu.xinyu_attributes.registry.AttributesRegistry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -29,8 +29,6 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.SINGLE_DAMAGE_LIMIT);
             // 单次百分比伤害上限
             event.add(entityType, AttributesRegistry.SINGLE_PERCENTAGE_DAMAGE_LIMIT);
-            // 穿墙
-            event.add(entityType, AttributesRegistry.PHASING);
             // 弹射物速度
             event.add(entityType, AttributesRegistry.PROJECTILE_SPEED);
         }

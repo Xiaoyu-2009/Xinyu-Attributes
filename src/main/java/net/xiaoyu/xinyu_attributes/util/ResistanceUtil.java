@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.LivingEntity;
+import net.xiaoyu.xinyu_attributes.registry.AttributesRegistry;
 
 public class ResistanceUtil {;
     public static float applyResistance(LivingEntity entity, DamageSource source, float originalAmount) {
