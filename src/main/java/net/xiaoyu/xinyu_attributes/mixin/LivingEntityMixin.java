@@ -87,12 +87,31 @@ public abstract class LivingEntityMixin {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         if (entity.hasEffect(MobEffectsRegistry.CLIMBING_SPEED)) {
-            return Config.CLIMBING_SPEED_VALUE.get();
+            return Config.CLIMBING_UP_SPEED_VALUE.get();
         }
 
         return vanillaClimbSpeed;
     }
+    
+    @ModifyArg(
+        method = "handleOnClimbable(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;",
+        at = @At(
+            value = "INVOKE", 
+            target = "Ljava/lang/Math;max(DD)D", 
+            ordinal = 0
+        ),
+        index = 1
+    )
+    private double modifyClimbingDownSpeed(double vanillaDownSpeed) {
+        LivingEntity entity = (LivingEntity) (Object) this;
 
+        if (entity.hasEffect(MobEffectsRegistry.CLIMBING_SPEED)) {
+            return -Config.CLIMBING_DOWN_SPEED_VALUE.get();
+        }
+
+        return vanillaDownSpeed;
+    }
+    
     @Inject(method = "tick", at = @At("TAIL"))
     private void onTickCheckProjectileBounce(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;

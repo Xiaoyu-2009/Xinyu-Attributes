@@ -23,4 +23,8 @@ public class MobEffectsRegistry {
     // 弹射物反弹
     public static final DeferredHolder<MobEffect, MobEffect> PROJECTILE_BOUNCE = MOB_EFFECTS.register("projectile_bounce",
         () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x808080) {});
+
+    // 作物生长
+    public static final DeferredHolder<MobEffect, MobEffect> CROP_GROWTH = MOB_EFFECTS.register("crop_growth",
+        () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x7cfc00) {});
 }
