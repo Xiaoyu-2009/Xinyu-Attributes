@@ -4,6 +4,7 @@ import net.xiaoyu.xinyu_attributes.*;
 import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
 import net.xiaoyu.xinyu_attributes.client.renderer.EvasionAnimationRenderer;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -95,6 +96,34 @@ public abstract class LivingEntityMixin {
     @Inject(method = "tick", at = @At("TAIL"))
     private void onTickCheckProjectileBounce(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
+
+        if (!entity.getAttribute(AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY).getModifiers().isEmpty() &&
+            entity.getAttributeValue(AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY) == 0) {
+            List<MobEffectInstance> negativeEffectsToRemove = new ArrayList<>();
+
+            for (MobEffectInstance effect : entity.getActiveEffects()) {
+                if (!effect.getEffect().value().isBeneficial()) {
+                    negativeEffectsToRemove.add(effect);
+                }
+            }
+            for (MobEffectInstance effect : negativeEffectsToRemove) {
+                entity.removeEffect(effect.getEffect());
+            }
+        }
+
+        if (!entity.getAttribute(AttributesRegistry.POSITIVE_EFFECT_IMMUNITY).getModifiers().isEmpty() &&
+            entity.getAttributeValue(AttributesRegistry.POSITIVE_EFFECT_IMMUNITY) == 0) {
+            List<MobEffectInstance> positiveEffectsToRemove = new ArrayList<>();
+            
+            for (MobEffectInstance effect : entity.getActiveEffects()) {
+                if (effect.getEffect().value().isBeneficial()) {
+                    positiveEffectsToRemove.add(effect);
+                }
+            }
+            for (MobEffectInstance effect : positiveEffectsToRemove) {
+                entity.removeEffect(effect.getEffect());
+            }
+        }
 
         if (entity.hasEffect(MobEffectsRegistry.PROJECTILE_BOUNCE)) {
             List<Projectile> nearbyProjectiles = entity.level().getEntitiesOfClass(

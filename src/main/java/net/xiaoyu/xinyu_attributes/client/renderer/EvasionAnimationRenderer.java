@@ -48,7 +48,7 @@ public class EvasionAnimationRenderer {
         LivingEntity entity = event.getEntity();
         int entityId = entity.getId();
         EvasionAnimationState state = evasionStates.get(entityId);
-        
+
         if (state != null && state.isActive) {
             PoseStack poseStack = event.getPoseStack();
 
@@ -77,7 +77,7 @@ public class EvasionAnimationRenderer {
             float scaleX = 1.0f + (float) Math.sin(distortionTime * 8.0f) * 0.08f * intensity;
             float scaleY = 1.0f + (float) Math.cos(distortionTime * 7.0f) * 0.06f * intensity;
             float scaleZ = 1.0f + (float) Math.sin(distortionTime * 9.0f) * 0.08f * intensity;
-            
+
             poseStack.scale(scaleX, scaleY, scaleZ);
 
             RenderSystem.enableBlend();

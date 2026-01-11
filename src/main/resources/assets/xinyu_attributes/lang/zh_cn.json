@@ -8,6 +8,8 @@
     "attribute.name.xinyu_attributes.single_damage_limit": "单次伤害上限",
     "attribute.name.xinyu_attributes.single_percentage_damage_limit": "单次百分比伤害上限",
     "attribute.name.xinyu_attributes.projectile_speed": "弹射物速度",
+    "attribute.name.xinyu_attributes.negative_effect_immunity": "负面效果免疫",
+    "attribute.name.xinyu_attributes.positive_effect_immunity": "正面效果免疫",
     
     "effect.xinyu_attributes.phasing": "穿墙",
     "effect.xinyu_attributes.water_walking": "水面行走",

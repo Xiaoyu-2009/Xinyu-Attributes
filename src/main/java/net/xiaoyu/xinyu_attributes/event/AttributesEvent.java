@@ -30,6 +30,10 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.SINGLE_PERCENTAGE_DAMAGE_LIMIT);
             // 弹射物速度
             event.add(entityType, AttributesRegistry.PROJECTILE_SPEED);
+            // 负面效果免疫
+            event.add(entityType, AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY);
+            // 正面效果免疫
+            event.add(entityType, AttributesRegistry.POSITIVE_EFFECT_IMMUNITY);
         }
     }
 }

@@ -52,4 +52,14 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> PROJECTILE_SPEED = ATTRIBUTES.register("projectile_speed",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".projectile_speed", 0, -Double.MAX_VALUE, Double.MAX_VALUE)
     );
+
+    // 负面效果免疫
+    public static final DeferredHolder<Attribute, Attribute> NEGATIVE_EFFECT_IMMUNITY = ATTRIBUTES.register("negative_effect_immunity",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".negative_effect_immunity", 0, 0, 0)
+    );
+
+    // 正面效果免疫
+    public static final DeferredHolder<Attribute, Attribute> POSITIVE_EFFECT_IMMUNITY = ATTRIBUTES.register("positive_effect_immunity",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".positive_effect_immunity", 0, 0, 0)
+    );
 }

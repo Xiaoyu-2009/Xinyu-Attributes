@@ -8,7 +8,9 @@
     "attribute.name.xinyu_attributes.single_damage_limit": "Single Damage Limit",
     "attribute.name.xinyu_attributes.single_percentage_damage_limit": "Single Percentage Damage Limit",
     "attribute.name.xinyu_attributes.projectile_speed": "Projectile Speed",
-
+    "attribute.name.xinyu_attributes.negative_effect_immunity": "Negative Effect Immunity",
+    "attribute.name.xinyu_attributes.positive_effect_immunity": "Positive Effect Immunity",
+    
     "effect.xinyu_attributes.phasing": "Phasing",
     "effect.xinyu_attributes.water_walking": "Water Walking",
     "effect.xinyu_attributes.climbing_speed": "Climbing Speed",
