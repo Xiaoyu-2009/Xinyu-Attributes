@@ -12,6 +12,9 @@
     "effect.xinyu_attributes.phasing": "穿墙",
     "effect.xinyu_attributes.water_walking": "水面行走",
     "effect.xinyu_attributes.climbing_speed": "攀爬速度",
+    "effect.xinyu_attributes.projectile_bounce": "弹射物反弹",
+
+    "subtitles.xinyu_attributes.evasion": "闪避",
     
     "death.attack.xinyu_attributes.armor_piercing": "%1$s被破甲伤害击败了",
     "death.attack.xinyu_attributes.armor_piercing.item": "%1$s被%2$s用%3$s造成破甲伤害击败了",

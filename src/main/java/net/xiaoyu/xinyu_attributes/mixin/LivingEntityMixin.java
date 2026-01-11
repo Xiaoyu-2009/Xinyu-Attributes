@@ -1,13 +1,20 @@
 package net.xiaoyu.xinyu_attributes.mixin;
 
-import net.xiaoyu.xinyu_attributes.Config;
+import net.xiaoyu.xinyu_attributes.*;
 import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
+import net.xiaoyu.xinyu_attributes.client.renderer.EvasionAnimationRenderer;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.phys.*;
+import net.minecraft.sounds.*;
+import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
+
+import java.util.*;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -83,5 +90,51 @@ public abstract class LivingEntityMixin {
         }
 
         return vanillaClimbSpeed;
+    }
+
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void onTickCheckProjectileBounce(CallbackInfo ci) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+
+        if (entity.hasEffect(MobEffectsRegistry.PROJECTILE_BOUNCE)) {
+            List<Projectile> nearbyProjectiles = entity.level().getEntitiesOfClass(
+                Projectile.class,
+                entity.getBoundingBox().inflate(Config.PROJECTILE_BOUNCE_RANGE.get()),
+                projectile -> projectile.getOwner() != entity
+            );
+
+            for (Projectile projectile : nearbyProjectiles) {
+                if (projectile.getPersistentData().getBoolean("xinyu_bounced")) {
+                    continue;
+                }
+
+                Entity owner = projectile.getOwner();
+                if (owner != null && owner != entity) {
+                    Vec3 direction = new Vec3(owner.getX(), owner.getY(), owner.getZ()).subtract(
+                        new Vec3(entity.getX(), entity.getY(), entity.getZ())
+                    ).normalize();
+
+                    projectile.setDeltaMovement(direction.scale(projectile.getDeltaMovement().length()));
+
+                    projectile.getPersistentData().putBoolean("xinyu_bounced", true);
+                    /*projectile.getPersistentData().putBoolean("xinyu_pass_through_block", true);*/
+                    
+                    double x = direction.x;
+                    double y = direction.y;
+                    double z = direction.z;
+
+                    projectile.setYRot((float) (Math.atan2(z, x) * 180 / Math.PI - 90));
+                    projectile.setXRot((float) -(Math.atan2(y, Math.sqrt(x * x + z * z)) * 180 / Math.PI));
+                    
+                    EvasionAnimationRenderer.triggerEvasionAnimation(entity);
+
+                    entity.level().playSound(
+                        null, entity.getX(), entity.getY(), entity.getZ(), 
+                        SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "evasion")), 
+                        SoundSource.PLAYERS, 0.4f, 1
+                    );
+                }
+            }
+        }
     }
 }

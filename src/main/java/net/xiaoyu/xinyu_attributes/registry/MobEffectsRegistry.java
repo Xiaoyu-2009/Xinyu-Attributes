@@ -19,4 +19,8 @@ public class MobEffectsRegistry {
     // 攀爬速度
     public static final DeferredHolder<MobEffect, MobEffect> CLIMBING_SPEED = MOB_EFFECTS.register("climbing_speed",
         () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0xffd700) {});
+
+    // 弹射物反弹
+    public static final DeferredHolder<MobEffect, MobEffect> PROJECTILE_BOUNCE = MOB_EFFECTS.register("projectile_bounce",
+        () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x808080) {});
 }
