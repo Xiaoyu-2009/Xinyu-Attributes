@@ -9,8 +9,14 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.*;
 import net.minecraft.sounds.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -141,6 +147,32 @@ public abstract class LivingEntityMixin {
             }
             for (MobEffectInstance effect : positiveEffectsToRemove) {
                 entity.removeEffect(effect.getEffect());
+            }
+        }
+        
+        if (entity.hasEffect(MobEffectsRegistry.CROP_GROWTH)) {
+            if (Config.CROP_GROWTH_TICK_DELAY.get() == 0 || entity.level().getGameTime() % Config.CROP_GROWTH_TICK_DELAY.get() == 0) {
+                Level level = entity.level();
+
+                if (level instanceof ServerLevel serverLevel) {
+                    int radius = Config.CROP_GROWTH_RADIUS.get();
+
+                    for (int x = -radius; x <= radius; x++) {
+                        for (int y = -radius; y <= radius; y++) {
+                            for (int z = -radius; z <= radius; z++) {
+                                BlockPos pos =  entity.blockPosition().offset(x, y, z);
+
+                                if ( x * x + y * y + z * z <= radius * radius) {
+                                    BlockState state = level.getBlockState(pos);
+
+                                    if (state.is(BlockTags.CROPS) || state.is(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "crops")))) {
+                                        state.randomTick(serverLevel, pos, serverLevel.getRandom());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
