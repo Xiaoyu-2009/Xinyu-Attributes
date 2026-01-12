@@ -4,7 +4,7 @@ import net.xiaoyu.xinyu_attributes.registry.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
+import net.neoforged.neoforge.event.entity.*;
 
 @EventBusSubscriber
 public class AttributesEvent {

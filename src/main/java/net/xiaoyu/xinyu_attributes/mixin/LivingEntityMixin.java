@@ -155,7 +155,7 @@ public abstract class LivingEntityMixin {
                 Level level = entity.level();
 
                 if (level instanceof ServerLevel serverLevel) {
-                    int radius = Config.CROP_GROWTH_RADIUS.get();
+                    int radius = entity.getEffect(MobEffectsRegistry.CROP_GROWTH).getAmplifier() + 1;
 
                     for (int x = -radius; x <= radius; x++) {
                         for (int y = -radius; y <= radius; y++) {

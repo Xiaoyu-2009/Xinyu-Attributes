@@ -1,9 +1,9 @@
 package net.xiaoyu.xinyu_attributes.registry;
 
+import net.xiaoyu.xinyu_attributes.XinYuAttributes;
 import net.neoforged.neoforge.registries.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.ai.attributes.*;
-import net.xiaoyu.xinyu_attributes.XinYuAttributes;
 
 public class AttributesRegistry {
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(Registries.ATTRIBUTE, XinYuAttributes.MOD_ID);

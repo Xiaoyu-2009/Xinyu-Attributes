@@ -1,12 +1,12 @@
 package net.xiaoyu.xinyu_attributes.util;
 
 import net.xiaoyu.xinyu_attributes.*;
+import net.xiaoyu.xinyu_attributes.registry.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
-import net.minecraft.world.entity.LivingEntity;
-import net.xiaoyu.xinyu_attributes.registry.AttributesRegistry;
+import net.minecraft.world.entity.*;
 
 public class ResistanceUtil {;
     public static float applyResistance(LivingEntity entity, DamageSource source, float originalAmount) {

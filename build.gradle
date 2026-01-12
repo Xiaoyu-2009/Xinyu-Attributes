@@ -55,6 +55,18 @@ dependencies {
     // Curios
     implementation "curse.maven:curios-309927:6529130"
 
+    // Sodium
+    implementation "curse.maven:sodium-394468:6382651"
+
+    // Iris Shaders
+    implementation "curse.maven:irisshaders-455508:6661598"
+
+    // KubeJS
+    implementation "curse.maven:kubejs-238086:7278501"
+
+    // 犀牛
+    implementation "curse.maven:rhino-416294:7104526"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
