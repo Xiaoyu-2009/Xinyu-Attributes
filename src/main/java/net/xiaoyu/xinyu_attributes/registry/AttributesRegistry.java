@@ -55,4 +55,8 @@ public class AttributesRegistry {
     // 破盾
     public static final DeferredHolder<Attribute, Attribute> SHIELD_BREAK = ATTRIBUTES.register("shield_break",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".shield_break", 0, 0, 0));
+
+    // 自动破坏
+    public static final DeferredHolder<Attribute, Attribute> AUTO_DESTROY = ATTRIBUTES.register("auto_destroy",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".auto_destroy", 0, 0, Double.MAX_VALUE));
 }

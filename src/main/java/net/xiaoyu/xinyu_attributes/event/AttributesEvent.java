@@ -36,6 +36,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.POSITIVE_EFFECT_IMMUNITY);
             // 破盾
             event.add(entityType, AttributesRegistry.SHIELD_BREAK);
+            // 自动破坏
+            event.add(entityType, AttributesRegistry.AUTO_DESTROY);
         }
     }
 }

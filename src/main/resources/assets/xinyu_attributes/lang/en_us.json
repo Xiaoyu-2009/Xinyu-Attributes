@@ -11,6 +11,7 @@
     "attribute.name.xinyu_attributes.negative_effect_immunity": "Negative Effect Immunity",
     "attribute.name.xinyu_attributes.positive_effect_immunity": "Positive Effect Immunity",
     "attribute.name.xinyu_attributes.shield_break": "Shield Break",
+    "attribute.name.xinyu_attributes.auto_destroy": "Auto Destroy",
     
     "effect.xinyu_attributes.phasing": "Phasing",
     "effect.xinyu_attributes.water_walking": "Water Walking",
@@ -18,7 +19,8 @@
     "effect.xinyu_attributes.projectile_bounce": "Projectile Bounce",
     "effect.xinyu_attributes.crop_growth": "Crop Growth",
     "effect.xinyu_attributes.ore_vision": "Ore Vision",
-
+    "effect.xinyu_attributes.auto_harvest": "Auto Harvest",
+    
     "subtitles.xinyu_attributes.evasion": "Evasion",
     
     "death.attack.xinyu_attributes.armor_piercing": "%1$s was defeated by armor-piercing damage",

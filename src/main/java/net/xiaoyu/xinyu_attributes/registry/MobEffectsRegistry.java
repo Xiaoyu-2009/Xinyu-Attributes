@@ -31,4 +31,8 @@ public class MobEffectsRegistry {
     // 矿物透视
     public static final DeferredHolder<MobEffect, MobEffect> ORE_VISION = MOB_EFFECTS.register("ore_vision",
         () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x808080) {});
+
+    // 自动收割
+    public static final DeferredHolder<MobEffect, MobEffect> AUTO_HARVEST = MOB_EFFECTS.register("auto_harvest",
+        () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x32CD32) {});
 }

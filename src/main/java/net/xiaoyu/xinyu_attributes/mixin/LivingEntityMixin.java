@@ -4,12 +4,15 @@ import net.xiaoyu.xinyu_attributes.*;
 import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
 import net.xiaoyu.xinyu_attributes.client.renderer.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.BlockPos;
@@ -125,10 +128,25 @@ public abstract class LivingEntityMixin {
         if (!entity.getAttribute(AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY).getModifiers().isEmpty() &&
             entity.getAttributeValue(AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY) == 0) {
             List<MobEffectInstance> negativeEffectsToRemove = new ArrayList<>();
+            List<? extends String> whitelist = Config.NEGATIVE_EFFECT_IMMUNITY_WHITELIST.get();
+            List<? extends String> blacklist = Config.NEGATIVE_EFFECT_IMMUNITY_BLACKLIST.get();
 
             for (MobEffectInstance effect : entity.getActiveEffects()) {
                 if (!effect.getEffect().value().isBeneficial()) {
-                    negativeEffectsToRemove.add(effect);
+                    String effectId = BuiltInRegistries.MOB_EFFECT.getKey(effect.getEffect().value()).toString();
+                    boolean shouldRemove = whitelist.isEmpty();
+
+                    if (!whitelist.isEmpty()) {
+                        shouldRemove = whitelist.contains(effectId);
+                    }
+
+                    if (blacklist.contains(effectId)) {
+                        shouldRemove = false;
+                    }
+                    
+                    if (shouldRemove) {
+                        negativeEffectsToRemove.add(effect);
+                    }
                 }
             }
             for (MobEffectInstance effect : negativeEffectsToRemove) {
@@ -139,10 +157,25 @@ public abstract class LivingEntityMixin {
         if (!entity.getAttribute(AttributesRegistry.POSITIVE_EFFECT_IMMUNITY).getModifiers().isEmpty() &&
             entity.getAttributeValue(AttributesRegistry.POSITIVE_EFFECT_IMMUNITY) == 0) {
             List<MobEffectInstance> positiveEffectsToRemove = new ArrayList<>();
+            List<? extends String> whitelist = Config.POSITIVE_EFFECT_IMMUNITY_WHITELIST.get();
+            List<? extends String> blacklist = Config.POSITIVE_EFFECT_IMMUNITY_BLACKLIST.get();
             
             for (MobEffectInstance effect : entity.getActiveEffects()) {
                 if (effect.getEffect().value().isBeneficial()) {
-                    positiveEffectsToRemove.add(effect);
+                    String effectId = BuiltInRegistries.MOB_EFFECT.getKey(effect.getEffect().value()).toString();
+                    boolean shouldRemove = whitelist.isEmpty();
+
+                    if (!whitelist.isEmpty()) {
+                        shouldRemove = whitelist.contains(effectId);
+                    }
+
+                    if (blacklist.contains(effectId)) {
+                        shouldRemove = false;
+                    }
+                    
+                    if (shouldRemove) {
+                        positiveEffectsToRemove.add(effect);
+                    }
                 }
             }
             for (MobEffectInstance effect : positiveEffectsToRemove) {
@@ -155,14 +188,14 @@ public abstract class LivingEntityMixin {
                 Level level = entity.level();
 
                 if (level instanceof ServerLevel serverLevel) {
-                    int radius = entity.getEffect(MobEffectsRegistry.CROP_GROWTH).getAmplifier() + 1;
+                    int range = entity.getEffect(MobEffectsRegistry.CROP_GROWTH).getAmplifier() + 1;
 
-                    for (int x = -radius; x <= radius; x++) {
-                        for (int y = -radius; y <= radius; y++) {
-                            for (int z = -radius; z <= radius; z++) {
+                    for (int x = -range; x <= range; x++) {
+                        for (int y = -range; y <= range; y++) {
+                            for (int z = -range; z <= range; z++) {
                                 BlockPos pos =  entity.blockPosition().offset(x, y, z);
 
-                                if ( x * x + y * y + z * z <= radius * radius) {
+                                if ( x * x + y * y + z * z <= range * range) {
                                     BlockState state = level.getBlockState(pos);
 
                                     if (state.is(BlockTags.CROPS) || state.is(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "crops")))) {
@@ -175,7 +208,42 @@ public abstract class LivingEntityMixin {
                 }
             }
         }
+        
+        if (entity.hasEffect(MobEffectsRegistry.AUTO_HARVEST)) {
+            Level level = entity.level();
 
+            if (level instanceof ServerLevel serverLevel) {
+                int range = entity.getEffect(MobEffectsRegistry.AUTO_HARVEST).getAmplifier() + 1;
+
+                for (int x = -range; x <= range; x++) {
+                    for (int y = -range; y <= range; y++) {
+                        for (int z = -range; z <= range; z++) {
+                            BlockPos pos = entity.blockPosition().offset(x, y, z);
+
+                            if (x * x + y * y + z * z <= range * range) {
+                                BlockState state = level.getBlockState(pos);
+
+                                if (state.getBlock() instanceof CropBlock cropBlock && cropBlock.isMaxAge(state)) {
+                                    serverLevel.destroyBlock(pos, true, entity);
+                                    for (ItemStack drop : Block.getDrops(state, (ServerLevel) level, pos, null)) {
+                                        if (drop.getItem() instanceof BlockItem blockItem) {
+                                            Block dropBlock = blockItem.getBlock();
+
+                                            if (dropBlock instanceof CropBlock) {
+                                                if (serverLevel.getBlockState(pos.below()).getBlock() instanceof FarmBlock) {
+                                                    serverLevel.setBlock(pos, dropBlock.defaultBlockState(), 3);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
         if (entity.hasEffect(MobEffectsRegistry.PROJECTILE_BOUNCE)) {
             List<Projectile> nearbyProjectiles = entity.level().getEntitiesOfClass(
                 Projectile.class,
@@ -213,6 +281,21 @@ public abstract class LivingEntityMixin {
                         SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "evasion")), 
                         SoundSource.PLAYERS, 0.4f, 1
                     );
+                }
+            }
+        }
+        
+        if (!entity.getAttribute(AttributesRegistry.AUTO_DESTROY).getModifiers().isEmpty() &&
+            entity.getAttributeValue(AttributesRegistry.AUTO_DESTROY) >= 0) {
+            if (entity.level() instanceof ServerLevel serverLevel) {
+                int range = (int) entity.getAttributeValue(AttributesRegistry.AUTO_DESTROY);
+                
+                for (int x = -range/2; x < -range/2 + range; x++) {
+                    for (int y = 0; y < range; y++) {
+                        for (int z = -range/2; z < -range/2 + range; z++) {
+                            serverLevel.destroyBlock(entity.blockPosition().offset(x, y, z), true, entity);
+                        }
+                    }
                 }
             }
         }

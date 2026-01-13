@@ -15,6 +15,10 @@ public class Config {
     public static final ModConfigSpec.IntValue CROP_GROWTH_TICK_DELAY;
     public static final ModConfigSpec.IntValue ORE_VISION_UPDATE_TICK_INTERVAL;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> ORE_VISION_BLOCK_BLACKLIST;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> NEGATIVE_EFFECT_IMMUNITY_WHITELIST;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> NEGATIVE_EFFECT_IMMUNITY_BLACKLIST;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> POSITIVE_EFFECT_IMMUNITY_WHITELIST;
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> POSITIVE_EFFECT_IMMUNITY_BLACKLIST;
     
     static {
         BUILDER.push("Buff Config");
@@ -36,6 +40,18 @@ public class Config {
 
         ORE_VISION_BLOCK_BLACKLIST = BUILDER
             .defineListAllowEmpty("ore_vision_block_blacklist", new ArrayList<>(), obj -> obj instanceof String);
+        
+        NEGATIVE_EFFECT_IMMUNITY_WHITELIST = BUILDER
+            .defineListAllowEmpty("negative_effect_immunity_whitelist", new ArrayList<>(), obj -> obj instanceof String);
+
+        NEGATIVE_EFFECT_IMMUNITY_BLACKLIST = BUILDER
+            .defineListAllowEmpty("negative_effect_immunity_blacklist", new ArrayList<>(), obj -> obj instanceof String);
+
+        POSITIVE_EFFECT_IMMUNITY_WHITELIST = BUILDER
+            .defineListAllowEmpty("positive_effect_immunity_whitelist", new ArrayList<>(), obj -> obj instanceof String);
+
+        POSITIVE_EFFECT_IMMUNITY_BLACKLIST = BUILDER
+            .defineListAllowEmpty("positive_effect_immunity_blacklist", new ArrayList<>(), obj -> obj instanceof String);
 
         BUILDER.pop();
 

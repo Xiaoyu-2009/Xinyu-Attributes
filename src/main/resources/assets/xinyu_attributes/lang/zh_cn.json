@@ -11,6 +11,7 @@
     "attribute.name.xinyu_attributes.negative_effect_immunity": "负面效果免疫",
     "attribute.name.xinyu_attributes.positive_effect_immunity": "正面效果免疫",
     "attribute.name.xinyu_attributes.shield_break": "破盾",
+    "attribute.name.xinyu_attributes.auto_destroy": "自动破坏",
     
     "effect.xinyu_attributes.phasing": "穿墙",
     "effect.xinyu_attributes.water_walking": "水面行走",
@@ -18,7 +19,8 @@
     "effect.xinyu_attributes.projectile_bounce": "弹射物反弹",
     "effect.xinyu_attributes.crop_growth": "作物生长",
     "effect.xinyu_attributes.ore_vision": "矿物透视",
-
+    "effect.xinyu_attributes.auto_harvest": "自动收割",
+    
     "subtitles.xinyu_attributes.evasion": "闪避",
     
     "death.attack.xinyu_attributes.armor_piercing": "%1$s被破甲伤害击败了",
