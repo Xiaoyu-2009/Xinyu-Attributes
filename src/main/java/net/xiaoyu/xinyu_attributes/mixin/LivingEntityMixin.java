@@ -7,7 +7,6 @@ import net.xiaoyu.xinyu_attributes.client.renderer.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.*;
@@ -20,7 +19,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.sounds.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
-import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
@@ -125,8 +124,7 @@ public abstract class LivingEntityMixin {
     private void onTickCheckProjectileBounce(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
-        if (!entity.getAttribute(AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY).getModifiers().isEmpty() &&
-            entity.getAttributeValue(AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY) == 0) {
+        if (!entity.getAttribute(AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY).getModifiers().isEmpty()) {
             List<MobEffectInstance> negativeEffectsToRemove = new ArrayList<>();
             List<? extends String> whitelist = Config.NEGATIVE_EFFECT_IMMUNITY_WHITELIST.get();
             List<? extends String> blacklist = Config.NEGATIVE_EFFECT_IMMUNITY_BLACKLIST.get();
@@ -154,8 +152,7 @@ public abstract class LivingEntityMixin {
             }
         }
 
-        if (!entity.getAttribute(AttributesRegistry.POSITIVE_EFFECT_IMMUNITY).getModifiers().isEmpty() &&
-            entity.getAttributeValue(AttributesRegistry.POSITIVE_EFFECT_IMMUNITY) == 0) {
+        if (!entity.getAttribute(AttributesRegistry.POSITIVE_EFFECT_IMMUNITY).getModifiers().isEmpty()) {
             List<MobEffectInstance> positiveEffectsToRemove = new ArrayList<>();
             List<? extends String> whitelist = Config.POSITIVE_EFFECT_IMMUNITY_WHITELIST.get();
             List<? extends String> blacklist = Config.POSITIVE_EFFECT_IMMUNITY_BLACKLIST.get();
@@ -189,7 +186,7 @@ public abstract class LivingEntityMixin {
 
                 if (level instanceof ServerLevel serverLevel) {
                     int range = entity.getEffect(MobEffectsRegistry.CROP_GROWTH).getAmplifier() + 1;
-
+ 
                     for (int x = -range; x <= range; x++) {
                         for (int y = -range; y <= range; y++) {
                             for (int z = -range; z <= range; z++) {
@@ -285,8 +282,7 @@ public abstract class LivingEntityMixin {
             }
         }
         
-        if (!entity.getAttribute(AttributesRegistry.AUTO_DESTROY).getModifiers().isEmpty() &&
-            entity.getAttributeValue(AttributesRegistry.AUTO_DESTROY) >= 0) {
+        if (!entity.getAttribute(AttributesRegistry.AUTO_DESTROY).getModifiers().isEmpty()) {
             if (entity.level() instanceof ServerLevel serverLevel) {
                 int range = (int) entity.getAttributeValue(AttributesRegistry.AUTO_DESTROY);
                 
@@ -301,12 +297,19 @@ public abstract class LivingEntityMixin {
         }
     }
 
+    @Inject(method = "actuallyHurt", at = @At(value = "TAIL"))
+    private void onActuallyHurt(DamageSource source, float amount, CallbackInfo ci) {
+        if (source.getEntity() instanceof LivingEntity attacker && source.getEntity() != (Object) this &&
+            !attacker.getAttribute(AttributesRegistry.LIFE_DRAIN).getModifiers().isEmpty()) {
+            attacker.heal(amount * (float) attacker.getAttributeValue(AttributesRegistry.LIFE_DRAIN));
+        }
+    }
+
     @Inject(method = "canDisableShield", at = @At("HEAD"), cancellable = true)
     private void canDisableShield(CallbackInfoReturnable<Boolean> cir) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
-        if (!entity.getAttribute(AttributesRegistry.SHIELD_BREAK).getModifiers().isEmpty() &&
-            entity.getAttributeValue(AttributesRegistry.SHIELD_BREAK) >= 0) {
+        if (!entity.getAttribute(AttributesRegistry.SHIELD_BREAK).getModifiers().isEmpty()) {
             cir.setReturnValue(true);
         }
     }

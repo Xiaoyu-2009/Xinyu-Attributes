@@ -38,6 +38,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.SHIELD_BREAK);
             // 自动破坏
             event.add(entityType, AttributesRegistry.AUTO_DESTROY);
+            // 生命吸取
+            event.add(entityType, AttributesRegistry.LIFE_DRAIN);
         }
     }
 }

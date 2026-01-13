@@ -59,4 +59,8 @@ public class AttributesRegistry {
     // 自动破坏
     public static final DeferredHolder<Attribute, Attribute> AUTO_DESTROY = ATTRIBUTES.register("auto_destroy",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".auto_destroy", 0, 0, Double.MAX_VALUE));
+
+    // 生命吸取
+    public static final DeferredHolder<Attribute, Attribute> LIFE_DRAIN = ATTRIBUTES.register("life_drain",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".life_drain", 0, 0, 1));
 }
