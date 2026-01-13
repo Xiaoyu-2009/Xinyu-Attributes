@@ -35,4 +35,8 @@ public class MobEffectsRegistry {
     // 自动收割
     public static final DeferredHolder<MobEffect, MobEffect> AUTO_HARVEST = MOB_EFFECTS.register("auto_harvest",
         () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x32CD32) {});
+
+    // 黑洞吸取
+    public static final DeferredHolder<MobEffect, MobEffect> BLACK_HOLE_ABSORPTION = MOB_EFFECTS.register("black_hole_absorption",
+        () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x000000) {});
 }

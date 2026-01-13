@@ -61,6 +61,6 @@ public class AttributesRegistry {
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".auto_destroy", 0, 0, Double.MAX_VALUE));
 
     // 生命吸取
-    public static final DeferredHolder<Attribute, Attribute> LIFE_DRAIN = ATTRIBUTES.register("life_drain",
-        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".life_drain", 0, 0, 1));
+    public static final DeferredHolder<Attribute, Attribute> LIFE_ABSORPTION = ATTRIBUTES.register("life_absorption",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".life_absorption", 0, 0, 1));
 }

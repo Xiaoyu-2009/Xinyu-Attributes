@@ -12,7 +12,7 @@
     "attribute.name.xinyu_attributes.positive_effect_immunity": "正面效果免疫",
     "attribute.name.xinyu_attributes.shield_break": "破盾",
     "attribute.name.xinyu_attributes.auto_destroy": "自动破坏",
-    "attribute.name.xinyu_attributes.life_drain": "生命吸取",
+    "attribute.name.xinyu_attributes.life_absorption": "生命吸取",
     
     "effect.xinyu_attributes.phasing": "穿墙",
     "effect.xinyu_attributes.water_walking": "水面行走",
@@ -21,6 +21,7 @@
     "effect.xinyu_attributes.crop_growth": "作物生长",
     "effect.xinyu_attributes.ore_vision": "矿物透视",
     "effect.xinyu_attributes.auto_harvest": "自动收割",
+    "effect.xinyu_attributes.black_hole_absorption": "黑洞吸取",
     
     "subtitles.xinyu_attributes.evasion": "闪避",
     

@@ -39,7 +39,7 @@ public class AttributesEvent {
             // 自动破坏
             event.add(entityType, AttributesRegistry.AUTO_DESTROY);
             // 生命吸取
-            event.add(entityType, AttributesRegistry.LIFE_DRAIN);
+            event.add(entityType, AttributesRegistry.LIFE_ABSORPTION);
         }
     }
 }

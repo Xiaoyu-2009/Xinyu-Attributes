@@ -12,7 +12,7 @@
     "attribute.name.xinyu_attributes.positive_effect_immunity": "Positive Effect Immunity",
     "attribute.name.xinyu_attributes.shield_break": "Shield Break",
     "attribute.name.xinyu_attributes.auto_destroy": "Auto Destroy",
-    "attribute.name.xinyu_attributes.life_drain": "Life Drain",
+    "attribute.name.xinyu_attributes.life_absorption": "Life Absorption",
     
     "effect.xinyu_attributes.phasing": "Phasing",
     "effect.xinyu_attributes.water_walking": "Water Walking",
@@ -21,6 +21,7 @@
     "effect.xinyu_attributes.crop_growth": "Crop Growth",
     "effect.xinyu_attributes.ore_vision": "Ore Vision",
     "effect.xinyu_attributes.auto_harvest": "Auto Harvest",
+    "effect.xinyu_attributes.black_hole_absorption": "Black Hole Absorption",
     
     "subtitles.xinyu_attributes.evasion": "Evasion",
     

@@ -300,8 +300,8 @@ public abstract class LivingEntityMixin {
     @Inject(method = "actuallyHurt", at = @At("TAIL"))
     private void onActuallyHurt(DamageSource source, float amount, CallbackInfo ci) {
         if (source.getEntity() instanceof LivingEntity attacker && source.getEntity() != (Object) this &&
-            !attacker.getAttribute(AttributesRegistry.LIFE_DRAIN).getModifiers().isEmpty()) {
-            attacker.heal(amount * (float) attacker.getAttributeValue(AttributesRegistry.LIFE_DRAIN));
+            !attacker.getAttribute(AttributesRegistry.LIFE_ABSORPTION).getModifiers().isEmpty()) {
+            attacker.heal(amount * (float) attacker.getAttributeValue(AttributesRegistry.LIFE_ABSORPTION));
         }
     }
 
