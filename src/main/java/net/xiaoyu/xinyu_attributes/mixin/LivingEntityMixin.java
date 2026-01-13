@@ -3,7 +3,7 @@ package net.xiaoyu.xinyu_attributes.mixin;
 import net.xiaoyu.xinyu_attributes.*;
 import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
-import net.xiaoyu.xinyu_attributes.client.renderer.EvasionAnimationRenderer;
+import net.xiaoyu.xinyu_attributes.client.renderer.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
@@ -215,6 +215,16 @@ public abstract class LivingEntityMixin {
                     );
                 }
             }
+        }
+    }
+
+    @Inject(method = "canDisableShield", at = @At("HEAD"), cancellable = true)
+    private void canDisableShield(CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+
+        if (!entity.getAttribute(AttributesRegistry.SHIELD_BREAK).getModifiers().isEmpty() &&
+            entity.getAttributeValue(AttributesRegistry.SHIELD_BREAK) >= 0) {
+            cir.setReturnValue(true);
         }
     }
 }

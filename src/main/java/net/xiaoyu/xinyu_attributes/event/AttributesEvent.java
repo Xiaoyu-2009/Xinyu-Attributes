@@ -34,6 +34,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY);
             // 正面效果免疫
             event.add(entityType, AttributesRegistry.POSITIVE_EFFECT_IMMUNITY);
+            // 破盾
+            event.add(entityType, AttributesRegistry.SHIELD_BREAK);
         }
     }
 }

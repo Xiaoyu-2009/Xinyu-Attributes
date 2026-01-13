@@ -27,7 +27,8 @@ public class MobEffectsRegistry {
     // 作物生长
     public static final DeferredHolder<MobEffect, MobEffect> CROP_GROWTH = MOB_EFFECTS.register("crop_growth",
         () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x7cfc00) {});
+
     // 矿物透视
     public static final DeferredHolder<MobEffect, MobEffect> ORE_VISION = MOB_EFFECTS.register("ore_vision",
-        () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x7cfc00) {});
+        () -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x808080) {});
 }

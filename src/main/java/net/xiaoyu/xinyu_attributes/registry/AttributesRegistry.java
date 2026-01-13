@@ -51,4 +51,8 @@ public class AttributesRegistry {
     // 正面效果免疫
     public static final DeferredHolder<Attribute, Attribute> POSITIVE_EFFECT_IMMUNITY = ATTRIBUTES.register("positive_effect_immunity",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".positive_effect_immunity", 0, 0, 0));
+
+    // 破盾
+    public static final DeferredHolder<Attribute, Attribute> SHIELD_BREAK = ATTRIBUTES.register("shield_break",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".shield_break", 0, 0, 0));
 }
