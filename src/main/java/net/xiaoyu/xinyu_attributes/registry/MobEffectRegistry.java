@@ -5,7 +5,7 @@ import net.minecraft.core.registries.*;
 import net.neoforged.neoforge.registries.*;
 import net.minecraft.world.effect.*;
 
-public class MobEffectsRegistry {
+public class MobEffectRegistry {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, XinYuAttributes.MOD_ID);
 
     // 穿墙

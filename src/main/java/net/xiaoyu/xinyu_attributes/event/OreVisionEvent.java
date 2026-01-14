@@ -37,7 +37,7 @@ public class OreVisionEvent {
         Integer lastUpdate = playerLastUpdateTick.get(playerId);
         
         if (lastUpdate != null && (currentTick - lastUpdate) < Config.ORE_VISION_UPDATE_TICK_INTERVAL.get()) {
-            if (!player.hasEffect(MobEffectsRegistry.ORE_VISION)) {
+            if (!player.hasEffect(MobEffectRegistry.ORE_VISION)) {
                 if (lastUpdate != -1) {
                     player.connection.send(new OreVisionDataPacket(new ArrayList<>()));
                     playerLastUpdateTick.put(playerId, -1);
@@ -46,7 +46,7 @@ public class OreVisionEvent {
             return;
         }
 
-        if (!player.hasEffect(MobEffectsRegistry.ORE_VISION)) {
+        if (!player.hasEffect(MobEffectRegistry.ORE_VISION)) {
             player.connection.send(new OreVisionDataPacket(new ArrayList<>()));
             playerLastUpdateTick.put(playerId, -1);
             return;
@@ -54,7 +54,7 @@ public class OreVisionEvent {
 
         playerLastUpdateTick.put(playerId, (int) currentTick);
 
-        int renderDistance = player.getEffect(MobEffectsRegistry.ORE_VISION).getAmplifier() + 1;
+        int renderDistance = player.getEffect(MobEffectRegistry.ORE_VISION).getAmplifier() + 1;
         if (renderDistance < 0) renderDistance = 0;
 
         List<BlockPos> orePositions = new ArrayList<>();

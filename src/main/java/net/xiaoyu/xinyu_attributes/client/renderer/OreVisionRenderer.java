@@ -43,7 +43,7 @@ public class OreVisionRenderer {
         Player player = mc.player;
 
         if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS) return;
-        if (!player.hasEffect(MobEffectsRegistry.ORE_VISION)) return;
+        if (!player.hasEffect(MobEffectRegistry.ORE_VISION)) return;
         
         Vec3 cameraPos = mc.gameRenderer.getMainCamera().getPosition();
         Level level = player.level();

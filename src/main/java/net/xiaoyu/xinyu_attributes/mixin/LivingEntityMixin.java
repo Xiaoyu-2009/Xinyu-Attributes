@@ -4,6 +4,7 @@ import net.xiaoyu.xinyu_attributes.*;
 import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.util.ResistanceUtil;
 import net.xiaoyu.xinyu_attributes.client.renderer.*;
+import net.xiaoyu.xinyu_attributes.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -94,7 +95,7 @@ public abstract class LivingEntityMixin {
     private double modifyClimbingUpSpeed(double vanillaClimbSpeed) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
-        if (entity.hasEffect(MobEffectsRegistry.CLIMBING_SPEED)) {
+        if (entity.hasEffect(MobEffectRegistry.CLIMBING_SPEED)) {
             return Config.CLIMBING_UP_SPEED_VALUE.get();
         }
 
@@ -113,13 +114,14 @@ public abstract class LivingEntityMixin {
     private double modifyClimbingDownSpeed(double vanillaDownSpeed) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
-        if (entity.hasEffect(MobEffectsRegistry.CLIMBING_SPEED)) {
+        if (entity.hasEffect(MobEffectRegistry.CLIMBING_SPEED)) {
             return -Config.CLIMBING_DOWN_SPEED_VALUE.get();
         }
 
         return vanillaDownSpeed;
     }
     
+    @SuppressWarnings("deprecation")
     @Inject(method = "tick", at = @At("TAIL"))
     private void onTickCheckProjectileBounce(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
@@ -156,7 +158,7 @@ public abstract class LivingEntityMixin {
             List<MobEffectInstance> positiveEffectsToRemove = new ArrayList<>();
             List<? extends String> whitelist = Config.POSITIVE_EFFECT_IMMUNITY_WHITELIST.get();
             List<? extends String> blacklist = Config.POSITIVE_EFFECT_IMMUNITY_BLACKLIST.get();
-            
+
             for (MobEffectInstance effect : entity.getActiveEffects()) {
                 if (effect.getEffect().value().isBeneficial()) {
                     String effectId = BuiltInRegistries.MOB_EFFECT.getKey(effect.getEffect().value()).toString();
@@ -180,12 +182,12 @@ public abstract class LivingEntityMixin {
             }
         }
         
-        if (entity.hasEffect(MobEffectsRegistry.CROP_GROWTH)) {
+        if (entity.hasEffect(MobEffectRegistry.CROP_GROWTH)) {
             if (Config.CROP_GROWTH_TICK_DELAY.get() == 0 || entity.level().getGameTime() % Config.CROP_GROWTH_TICK_DELAY.get() == 0) {
                 Level level = entity.level();
 
                 if (level instanceof ServerLevel serverLevel) {
-                    int range = entity.getEffect(MobEffectsRegistry.CROP_GROWTH).getAmplifier() + 1;
+                    int range = entity.getEffect(MobEffectRegistry.CROP_GROWTH).getAmplifier() + 1;
  
                     for (int x = -range; x <= range; x++) {
                         for (int y = -range; y <= range; y++) {
@@ -193,10 +195,10 @@ public abstract class LivingEntityMixin {
                                 BlockPos pos =  entity.blockPosition().offset(x, y, z);
 
                                 if ( x * x + y * y + z * z <= range * range) {
-                                    BlockState state = level.getBlockState(pos);
+                                    BlockState blockState = level.getBlockState(pos);
 
-                                    if (state.is(BlockTags.CROPS) || state.is(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "crops")))) {
-                                        state.randomTick(serverLevel, pos, serverLevel.getRandom());
+                                    if (blockState.is(BlockTags.CROPS) || blockState.is(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "crops")))) {
+                                        blockState.randomTick(serverLevel, pos, serverLevel.getRandom());
                                     }
                                 }
                             }
@@ -206,11 +208,11 @@ public abstract class LivingEntityMixin {
             }
         }
         
-        if (entity.hasEffect(MobEffectsRegistry.AUTO_HARVEST)) {
+        if (entity.hasEffect(MobEffectRegistry.AUTO_HARVEST)) {
             Level level = entity.level();
 
             if (level instanceof ServerLevel serverLevel) {
-                int range = entity.getEffect(MobEffectsRegistry.AUTO_HARVEST).getAmplifier() + 1;
+                int range = entity.getEffect(MobEffectRegistry.AUTO_HARVEST).getAmplifier() + 1;
 
                 for (int x = -range; x <= range; x++) {
                     for (int y = -range; y <= range; y++) {
@@ -218,11 +220,11 @@ public abstract class LivingEntityMixin {
                             BlockPos pos = entity.blockPosition().offset(x, y, z);
 
                             if (x * x + y * y + z * z <= range * range) {
-                                BlockState state = level.getBlockState(pos);
+                                BlockState blockState = level.getBlockState(pos);
 
-                                if (state.getBlock() instanceof CropBlock cropBlock && cropBlock.isMaxAge(state)) {
+                                if (blockState.getBlock() instanceof CropBlock cropBlock && cropBlock.isMaxAge(blockState)) {
                                     serverLevel.destroyBlock(pos, true, entity);
-                                    for (ItemStack drop : Block.getDrops(state, (ServerLevel) level, pos, null)) {
+                                    for (ItemStack drop : Block.getDrops(blockState, (ServerLevel) level, pos, null)) {
                                         if (drop.getItem() instanceof BlockItem blockItem) {
                                             Block dropBlock = blockItem.getBlock();
 
@@ -241,7 +243,7 @@ public abstract class LivingEntityMixin {
             }
         }
         
-        if (entity.hasEffect(MobEffectsRegistry.PROJECTILE_BOUNCE)) {
+        if (entity.hasEffect(MobEffectRegistry.PROJECTILE_BOUNCE)) {
             List<Projectile> nearbyProjectiles = entity.level().getEntitiesOfClass(
                 Projectile.class,
                 entity.getBoundingBox().inflate(Config.PROJECTILE_BOUNCE_RANGE.get()),
@@ -290,6 +292,42 @@ public abstract class LivingEntityMixin {
                     for (int y = 0; y < range; y++) {
                         for (int z = -range/2; z < -range/2 + range; z++) {
                             serverLevel.destroyBlock(entity.blockPosition().offset(x, y, z), true, entity);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (entity.hasEffect(MobEffectRegistry.BLACK_HOLE_ABSORPTION)) {
+            Level level = entity.level();
+
+            if (level instanceof ServerLevel serverLevel) {
+                int range = entity.getEffect(MobEffectRegistry.BLACK_HOLE_ABSORPTION).getAmplifier() + 1;
+
+                for (int x = -range; x <= range; x++) {
+                    for (int y = -range; y <= range; y++) {
+                        for (int z = -range; z <= range; z++) {
+                            BlockPos blockPos = entity.blockPosition().offset(x, y, z);
+
+                            if (entity.position().distanceToSqr(Vec3.atCenterOf(blockPos)) <= range * range) {
+                                BlockState blockState = level.getBlockState(blockPos);
+
+                                if (blockState.isAir() || blockState.liquid() || blockState.hasBlockEntity() || 
+                                    blockState.is(Blocks.END_PORTAL_FRAME)
+                                ) continue;
+                                level.removeBlock(blockPos, false);
+                                
+                                AbsorbedBlockEntity absorbedBlockEntity = new AbsorbedBlockEntity(
+                                    EntityRegistry.ABSORBED_BLOCK_ENTITY.get(),
+                                    level,
+                                    blockPos,
+                                    blockState,
+                                    entity.position()
+                                );
+                                
+                                absorbedBlockEntity.setAbsorptionTime(Config.BLACK_HOLE_ABSORPTION_TIME.get());
+                                serverLevel.addFreshEntity(absorbedBlockEntity);
+                            }
                         }
                     }
                 }

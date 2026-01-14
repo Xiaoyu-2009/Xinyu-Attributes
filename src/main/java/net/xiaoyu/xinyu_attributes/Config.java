@@ -19,6 +19,7 @@ public class Config {
     public static final ModConfigSpec.ConfigValue<List<? extends String>> NEGATIVE_EFFECT_IMMUNITY_BLACKLIST;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> POSITIVE_EFFECT_IMMUNITY_WHITELIST;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> POSITIVE_EFFECT_IMMUNITY_BLACKLIST;
+    public static final ModConfigSpec.IntValue BLACK_HOLE_ABSORPTION_TIME;
     
     static {
         BUILDER.push("Buff Config");
@@ -52,6 +53,9 @@ public class Config {
 
         POSITIVE_EFFECT_IMMUNITY_BLACKLIST = BUILDER
             .defineListAllowEmpty("positive_effect_immunity_blacklist", new ArrayList<>(), obj -> obj instanceof String);
+        
+        BLACK_HOLE_ABSORPTION_TIME = BUILDER
+            .defineInRange("black_hole_absorption_time", 40, 0, Integer.MAX_VALUE);
 
         BUILDER.pop();
 

@@ -23,6 +23,8 @@
     "effect.xinyu_attributes.auto_harvest": "Auto Harvest",
     "effect.xinyu_attributes.black_hole_absorption": "Black Hole Absorption",
     
+    "entity.xinyu_attributes.absorbed_block_entity": "Absorbed Block Entity",
+    
     "subtitles.xinyu_attributes.evasion": "Evasion",
     
     "death.attack.xinyu_attributes.armor_piercing": "%1$s was defeated by armor-piercing damage",

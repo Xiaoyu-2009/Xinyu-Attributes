@@ -23,6 +23,8 @@
     "effect.xinyu_attributes.auto_harvest": "自动收割",
     "effect.xinyu_attributes.black_hole_absorption": "黑洞吸取",
     
+    "entity.xinyu_attributes.absorbed_block_entity": "被吸取的方块",
+    
     "subtitles.xinyu_attributes.evasion": "闪避",
     
     "death.attack.xinyu_attributes.armor_piercing": "%1$s被破甲伤害击败了",

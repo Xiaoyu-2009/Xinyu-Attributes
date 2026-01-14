@@ -21,10 +21,10 @@ public abstract class BlockStateBaseMixin {
     private void onGetCollisionShape(BlockGetter blockGetter, BlockPos blockPos, CollisionContext context, CallbackInfoReturnable<VoxelShape> cir) {
         if (context instanceof EntityCollisionContext entityContext) {
             if (entityContext.getEntity() instanceof LivingEntity livingEntity) {
-                if (livingEntity.hasEffect(MobEffectsRegistry.PHASING)) {
+                if (livingEntity.hasEffect(MobEffectRegistry.PHASING)) {
                     cir.setReturnValue(Shapes.empty());
                 }
-                if (livingEntity.hasEffect(MobEffectsRegistry.WATER_WALKING) &&
+                if (livingEntity.hasEffect(MobEffectRegistry.WATER_WALKING) &&
                     !blockGetter.getFluidState(blockPos).isEmpty() &&
                     !livingEntity.isCrouching() &&
                     !(livingEntity.isEyeInFluidType(blockGetter.getFluidState(blockPos).getFluidType()) || 

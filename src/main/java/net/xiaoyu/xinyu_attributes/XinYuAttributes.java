@@ -16,7 +16,8 @@ public class XinYuAttributes {
 
     public XinYuAttributes(ModContainer modContainer) {
         AttributesRegistry.ATTRIBUTES.register(modContainer.getEventBus());
-        MobEffectsRegistry.MOB_EFFECTS.register(modContainer.getEventBus());
+        MobEffectRegistry.MOB_EFFECTS.register(modContainer.getEventBus());
+        EntityRegistry.ENTITIES.register(modContainer.getEventBus());
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         modContainer.getEventBus().addListener(XinYuAttributes::registerNetwork);
     }
