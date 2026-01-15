@@ -8,7 +8,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 
-public class ResistanceUtil {;
+public class ResistanceUtil {
     public static float applyResistance(LivingEntity entity, DamageSource source, float originalAmount) {
         // 火焰抗性
         if (source.is(TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(XinYuAttributes.MOD_ID, "is_fire"))) ||

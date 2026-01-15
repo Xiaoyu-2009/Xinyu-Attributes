@@ -67,6 +67,9 @@ dependencies {
     // 犀牛
     implementation "curse.maven:rhino-416294:7104526"
 
+    // L2 Library
+    implementation "curse.maven:l2library-620203:6820079"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"

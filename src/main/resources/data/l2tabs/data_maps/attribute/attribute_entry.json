@@ -1,0 +1,74 @@
+{
+  "values": {
+    "xinyu_attributes:fire_resistance": {
+      "intrinsic": 0.0,
+      "order": 20000,
+      "usePercent": true
+    },
+    "xinyu_attributes:freeze_resistance": {
+      "intrinsic": 0.0,
+      "order": 20001,
+      "usePercent": true
+    },
+    "xinyu_attributes:poison_resistance": {
+      "intrinsic": 0.0,
+      "order": 20002,
+      "usePercent": true
+    },
+    "xinyu_attributes:wither_resistance": {
+      "intrinsic": 0.0,
+      "order": 20003,
+      "usePercent": true
+    },
+    "xinyu_attributes:sonic_resistance": {
+      "intrinsic": 0.0,
+      "order": 20004,
+      "usePercent": true
+    },
+    "xinyu_attributes:projectile_resistance": {
+      "intrinsic": 0.0,
+      "order": 20005,
+      "usePercent": true
+    },
+    "xinyu_attributes:single_damage_limit": {
+      "intrinsic": 0.0,
+      "order": 21000,
+      "usePercent": false
+    },
+    "xinyu_attributes:single_percentage_damage_limit": {
+      "intrinsic": 0.0,
+      "order": 21001,
+      "usePercent": true
+    },
+    "xinyu_attributes:projectile_speed": {
+      "intrinsic": 0.0,
+      "order": 15000,
+      "usePercent": false
+    },
+    "xinyu_attributes:negative_effect_immunity": {
+      "intrinsic": 0.0,
+      "order": 22000,
+      "usePercent": false
+    },
+    "xinyu_attributes:positive_effect_immunity": {
+      "intrinsic": 0.0,
+      "order": 22001,
+      "usePercent": false
+    },
+    "xinyu_attributes:shield_break": {
+      "intrinsic": 0.0,
+      "order": 14000,
+      "usePercent": false
+    },
+    "xinyu_attributes:auto_destroy": {
+      "intrinsic": 0.0,
+      "order": 19000,
+      "usePercent": false
+    },
+    "xinyu_attributes:life_absorption": {
+      "intrinsic": 0.0,
+      "order": 18000,
+      "usePercent": true
+    }
+  }
+}
