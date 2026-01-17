@@ -63,7 +63,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
         float depth = fract(i+t);
         float scale = mix(CanvasView, .5, depth);
         float fade = depth*smoothstep(1.,.9,depth);
-        col += StarLayer(uv*scale+i*453.2-iTime*.05+M)*fade;}   
+        col += StarLayer(uv*scale+i*453.2-iTime*.05+M)*fade;}
     fragColor = vec4(col,1.0);
 }
 
