@@ -26,6 +26,7 @@ public class BlackHoleRenderer extends EntityRenderer<BlackHoleEntity> {
         float originalAlpha = RenderSystem.getShaderColor()[3];
 
         RenderSystem.enableDepthTest();
+        RenderSystem.disableCull();
         
         /*RenderSystem.setShader(GameRenderer::getPositionColorShader);*/
         RenderSystem.setShader(() -> ShaderRegistry.BLACK_HOLE_RING_SHADER);
@@ -108,6 +109,7 @@ public class BlackHoleRenderer extends EntityRenderer<BlackHoleEntity> {
 
         BufferUploader.drawWithShader(ringBuffer.buildOrThrow());*/
         
+        RenderSystem.enableCull(); // 重新启用背面剔除以避免影响其他渲染
         RenderSystem.setShaderColor(originalRed, originalGreen, originalBlue, originalAlpha);
         /*RenderSystem.disableDepthTest();*/
 

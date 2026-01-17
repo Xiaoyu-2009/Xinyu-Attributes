@@ -51,6 +51,8 @@ vec3 StarLayer(vec2 uv){
     return col;
 }
 
+out vec4 fragColor;
+
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
     vec2 uv = (fragCoord-.5*iResolution.xy)/iResolution.y;
@@ -63,11 +65,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
         float depth = fract(i+t);
         float scale = mix(CanvasView, .5, depth);
         float fade = depth*smoothstep(1.,.9,depth);
-        col += StarLayer(uv*scale+i*453.2-iTime*.05+M)*fade;}
+        col += StarLayer(uv*scale+i*453.2-iTime*.05+M)*fade;}   
     fragColor = vec4(col,1.0);
 }
 
 void main()
 {
-    mainImage(gl_FragColor, gl_FragCoord.xy);
+    mainImage(fragColor, gl_FragCoord.xy);
 }
