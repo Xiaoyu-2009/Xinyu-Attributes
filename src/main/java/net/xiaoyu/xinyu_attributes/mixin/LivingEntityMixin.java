@@ -300,7 +300,7 @@ public abstract class LivingEntityMixin {
 
         if (entity.hasEffect(MobEffectRegistry.BLACK_HOLE_ABSORPTION)) {
             Level level = entity.level();
-
+            
             if (level instanceof ServerLevel serverLevel) {
                 int range = entity.getEffect(MobEffectRegistry.BLACK_HOLE_ABSORPTION).getAmplifier() + 1;
 

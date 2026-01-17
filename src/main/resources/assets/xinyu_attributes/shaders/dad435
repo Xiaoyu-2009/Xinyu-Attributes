@@ -1,0 +1,60 @@
+// combine turbulence, triangle waves (tribulence :D), and twist
+
+// play here, keep grow rate above > 1.
+#define TURBZ_START          .3
+#define TURBZ_END            8.
+#define TURBZ_GROW_RATE      5.
+
+void mainImage(out vec4 o, vec2 u) {
+    
+    vec3 q,p = iResolution;
+    
+    float i, s, pi = 3.14159,
+          // start the ray at a small random distance,
+          // this will reduce banding
+          d = .125*texelFetch(iChannel0, ivec2(u)%1024, 0).a,
+          t = iTime * 2.;
+          
+    // scale coords
+    u =(u+u-p.xy)/p.y;
+    
+    for(o*=i; i++<64.; ) {
+        
+        // shorthand for standard raymarch sample, then move forward:
+        // p = ro + rd * d, p.z + t*4.
+        q = p = vec3(u * d, d + t * 4.);
+        
+        // twist and spin p space
+        p.xy *= mat2(cos(.22*t+p.z/9.+vec4(0,33,11,0))),
+        // twist and spin q space
+        q.xy *= mat2(cos(.25*t-q.z/7.+vec4(0,33,11,0))),
+
+        // repeat q.z
+        q.z = fract(q.z*.7)-.2;
+        // repeat p.z
+        p.z = cos(p.z*.3);
+
+        // turbulence and triangle waves
+        for(s = TURBZ_START; s < TURBZ_END; s *= TURBZ_GROW_RATE)
+            // turbz, scaled by s
+            q += sin(.6*t+p.zxy*s*3.)/s,
+            p += sin(t+p.yzx*s*2.)/s,
+            // triangle waves, scaled by s
+            q.yz += (pi * ( abs( 2. * fract( s*s*q/(2.*pi)+.75)-1.)-.5)).zx/s,
+            p.xz += (pi * ( abs( 2. * fract( s*s*p/(2.*pi)+.75)-1.)-.5)).zx/s;
+
+        // distance to spheres sampled from p and q space
+        d += s = .01 + abs(min(length(p)-8.+sin(t)*2., length(q)-7.+sin(t*.7)*2.))*.2;
+        
+        // color: 1.+cos so we don't go negative, cos(d+vec4(6,4,2,0)) samples from the palette
+        // divide by s for form and distance
+        // divide by length(u) for the light in the center (dot(u,u) for greater effect)
+        o += vec4(6,2,1,0) / s + .5*vec4(1,2,5,0)/length(u);
+        
+    }
+    
+    // swizzle mix colors by length of u (comment out to see effect)
+    o = mix(o, o.yzxw, smoothstep(.2, 1., length(u)/2.));
+    // tonemap and divide brightness
+    o = tanh(o*o/4e6);
+}

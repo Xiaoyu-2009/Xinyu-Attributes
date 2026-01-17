@@ -1,27 +1,45 @@
 package net.xiaoyu.xinyu_attributes.client;
 
 import net.xiaoyu.xinyu_attributes.client.renderer.*;
-import net.xiaoyu.xinyu_attributes.registry.EntityRegistry;
-import net.xiaoyu.xinyu_attributes.entity.AbsorbedBlockEntity;
+import net.xiaoyu.xinyu_attributes.data.*;
+import net.xiaoyu.xinyu_attributes.registry.*;
+import net.xiaoyu.xinyu_attributes.entity.*;
+import net.minecraft.server.packs.resources.*;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.api.distmarker.*;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import org.jetbrains.annotations.*;
 
-@EventBusSubscriber(value = Dist.CLIENT)
+@EventBusSubscriber(Dist.CLIENT)
 public class ClientEvent {
 
     @SubscribeEvent
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
         OreVisionRenderer.renderBlockOutlines(event);
     }
+
+    @SubscribeEvent
+    public static void onResourceReload(RegisterClientReloadListenersEvent event) {
+        event.registerReloadListener(new SimplePreparableReloadListener<>() {
+            @Override
+            protected @NotNull Object prepare(@NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profiler) {
+                return null;
+            }
+
+            @Override
+            protected void apply(@NotNull Object object, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profiler) {
+                OreVisionColorData.loadConfig();
+            }
+        });
+    }
     
     @SuppressWarnings("unchecked")
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer((EntityType<? extends AbsorbedBlockEntity>) EntityRegistry.ABSORBED_BLOCK_ENTITY.get(),
-            AbsorbedBlockRenderer::new);
+        event.registerEntityRenderer((EntityType<? extends AbsorbedBlockEntity>) EntityRegistry.ABSORBED_BLOCK_ENTITY.get(), AbsorbedBlockRenderer::new);
+        event.registerEntityRenderer((EntityType<? extends BlackHoleEntity>) EntityRegistry.BLACK_HOLE_ENTITY.get(), BlackHoleRenderer::new);
     }
 }

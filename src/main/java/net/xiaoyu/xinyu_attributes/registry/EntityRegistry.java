@@ -11,7 +11,13 @@ public class EntityRegistry {
 
     public static final DeferredHolder<EntityType<?>, ?> ABSORBED_BLOCK_ENTITY = ENTITIES.register("absorbed_block_entity",
         () -> EntityType.Builder.of(AbsorbedBlockEntity::new, MobCategory.MISC)
-            .sized(0.5F, 0.5F)
+            .sized(0.5f, 0.5f)
             .clientTrackingRange(32)
             .build("absorbed_block_entity"));
+    
+    public static final DeferredHolder<EntityType<?>, EntityType<?>> BLACK_HOLE_ENTITY = ENTITIES.register("black_hole_entity",
+        () -> EntityType.Builder.of(BlackHoleEntity::new, MobCategory.MISC)
+            .sized(3f, 3f)
+            .clientTrackingRange(32)
+            .build("black_hole_entity"));
 }

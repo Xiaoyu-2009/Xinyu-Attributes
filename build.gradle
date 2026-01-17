@@ -70,6 +70,9 @@ dependencies {
     // L2 Library
     implementation "curse.maven:l2library-620203:6820079"
 
+    // 生物大乱斗
+    implementation "curse.maven:mob-battle-mod-268746:6803440"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"

@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.*;
 
-@EventBusSubscriber(value = Dist.CLIENT)
+@EventBusSubscriber(Dist.CLIENT)
 public class EvasionAnimationRenderer {
     private static final Map<Integer, EvasionAnimationState> evasionStates = new HashMap<>();
     private static final Map<Integer, Boolean> pushedPoses = new HashMap<>();

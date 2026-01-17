@@ -4,21 +4,15 @@ import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.XinYuAttributes;
 import net.xiaoyu.xinyu_attributes.Config;
 import net.xiaoyu.xinyu_attributes.network.*;
-import net.xiaoyu.xinyu_attributes.data.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.packs.resources.*;
-import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -81,20 +75,5 @@ public class OreVisionEvent {
         }
 
         player.connection.send(new OreVisionDataPacket(orePositions));
-    }
-
-    @SubscribeEvent @OnlyIn(Dist.CLIENT)
-    public static void onResourceReload(RegisterClientReloadListenersEvent event) {
-        event.registerReloadListener(new SimplePreparableReloadListener<>() {
-            @Override
-            protected @NotNull Object prepare(@NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profiler) {
-                return null;
-            }
-
-            @Override
-            protected void apply(@NotNull Object object, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profiler) {
-                OreVisionColorData.loadConfig();
-            }
-        });
     }
 }

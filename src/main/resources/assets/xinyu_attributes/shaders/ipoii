@@ -1,0 +1,170 @@
+#define N normalize
+
+// Rotation matrix by an angle
+mat2 R(float angle) {
+    return mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+}
+
+// Way of texturing 3D surfaces with a texture, given a point and a normal.
+// @Shane
+vec3 tex3D( sampler2D tex, in vec3 p, in vec3 n ){
+  
+    n = max((abs(n) - 0.2)*7., 0.001);
+    n /= (n.x + n.y + n.z );  
+    
+	return (texture(tex, p.yz)*n.x + texture(tex, p.zx)*n.y + texture(tex, p.xy)*n.z).xyz;
+}
+
+vec3 tunnelPath(float t) {
+    return vec3(
+        cos(t*.1)*4.+tanh(cos(t * .1) * 1.8) * 4.,
+        tanh(cos((t) * .15) * .4) * 8.,
+        t
+    );
+}
+
+float tunnel(vec3 p) {
+    p.xy -= tunnelPath(p.z).xy;
+    
+    // tunnel thickness varies over path
+    float d = cos(p.z*.1)*.45+1. - length(p.xy);
+    
+    return d;
+}
+
+// Same as diatribes' original
+float fractal(vec3 p) {    
+    float w=.2;
+    float l=0.;
+    
+    p.y -= 2.75;
+    p *= vec3(.6, .5, .25);
+    
+    float twist = 0.;
+    p += cos(p.yzx * 6. + p.xzy * 2. + p.zxy *4.)*twist;
+    
+    float thickness = 1.1;
+    for (int i=0; i++ < 8; ) {
+        p = abs(sin(p))-1.;
+        l = thickness/dot(p,p);
+        p *= l;
+        w *= l;
+    }
+
+    return length(p)/w - 0.001;
+}
+
+float map(vec3 p) {
+    // max cuts a tunnel through the fractal
+    return max(fractal(p), tunnel(p));
+}
+
+const float pi =   3.14159265358979323846264338327950288;
+// pulses like a heartbeat between 0 and 1 periodically, every [0, 2] interval
+// https://graphtoy.com/?f1(x,t)=sin(-x*PI+pow(sin(-x*PI)+1,2))+1&v1=true
+float pulse(float t) {
+    t = -t*pi;
+    float x = sin(t) + 1.;
+    return sin(t + x * x) +1.;
+}
+
+// 
+const float warpSpeed = 1.;
+const float warpMagnitude = .13;
+const float warpWavelength = 20.;
+vec3 warp(in vec3 p) {
+    float heartbeat = pulse(iTime*warpSpeed + length(p)/warpWavelength);
+    return p + cos(heartbeat + p)*warpMagnitude;
+}
+
+// @iq
+float AO(in vec3 pos, in vec3 nor) {
+	float sca = 2.1, occ = 0.0;
+    for( int i=0; i<5; i++ ){
+        float hr = 0.01 + float(i)*0.5/4.0;        
+        float dd = map(nor * hr + pos);
+        occ += (hr - dd)*sca;
+        sca *= 0.7;
+    }
+    return clamp( 1.0 - occ, 0.0, 1.0 );    
+}
+
+// https://iquilezles.org/articles/fog/
+const float fogAbsorption = 0.01;
+vec3 applyFog( in vec3  col,   // color of pixel
+               in float d,     // distance to point
+               in vec3  rd,    // camera to point
+               in vec3  lig )  // sun direction
+{
+    float fogAmount = 1.0 - exp(-d*fogAbsorption);
+    float sunAmount = max( dot(rd, lig), 0.0 );
+    vec3  fogColor  = mix( vec3(0.3,0.1,0.8), // blue
+                           vec3(1,0.3,0.3), // red
+                           pow(sunAmount,8.0) );
+    return mix( col, fogColor, fogAmount );
+}
+
+
+// https://iquilezles.org/articles/normalsSDF/
+vec3 calcNormal( in vec3 p )
+{
+    const float eps = 0.0001; // small epsilon to nudge
+    const vec2 h = vec2(eps,0);
+    return normalize( vec3(map(p+h.xyy) - map(p-h.xyy),
+                           map(p+h.yxy) - map(p-h.yxy),
+                           map(p+h.yyx) - map(p-h.yyx) ) );
+}
+
+vec3 rayDirection(in vec2 uv, in vec3 lookDir) {
+    vec3 X = N(vec3(lookDir.z,0,-lookDir));
+    vec3 rotatedUv = vec3(R(tanh(cos(iTime*.07)*2.)*3.)*uv, 1);
+    return rotatedUv * mat3(-X, cross(X, lookDir), lookDir);
+}
+
+
+void mainImage(out vec4 o, in vec2 uv) {
+    float s=.1;
+    float totalDistance=0.;
+    float i=0.;
+    
+    // scale uv coordinates
+    uv = (uv-iResolution.xy/2.)/iResolution.y;     
+  
+    vec3 p = tunnelPath(iTime);
+    vec3 rayOrigin=p;
+    
+    // Look direction derived from walking a bit further on the tunnel path
+    vec3 lookDir = N( tunnelPath(iTime+2.) - p);
+    
+    // Calculate the ray direction for pixel
+    vec3 D = rayDirection(uv, lookDir);
+
+    o = vec4(0);
+    float iterations = 80.;
+    for(;i++ < iterations;) {
+        p = rayOrigin + D * totalDistance * .7;
+        s = map(warp(p));
+        totalDistance += s;
+        o += 2.*vec4(32,2,1,0) + .04*vec4(1,2,16,4)/(.001+abs(s));
+    }
+    // compensate brightness based on iterations
+    o *= (50. / iterations);
+    o *= o;    
+ 
+    // apply Ambient occlusion
+    vec3 sdfNormal = calcNormal(warp(p));
+    vec4 lights = abs((vec4(7,2,4,0)) / dot(cos(iTime+p),vec3(32)));
+    o *= AO(p, sdfNormal)*lights;
+    
+    // darken colors based on distance
+    o = sqrt(totalDistance*o / 1e7 * exp(-totalDistance/5.));
+    
+    // apply fog
+    o.xyz = applyFog(o.xyz, totalDistance, D, vec3(0.,0.,1.) );
+    
+    // vignette
+    o *= smoothstep(0.,1., 1.2-length(uv*.9));
+    
+    // tonemap
+    o = tanh(o);
+}
