@@ -42,6 +42,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.LIFE_ABSORPTION);
             // 击杀掉落翻倍
             event.add(entityType, AttributesRegistry.KILL_DROP_MULTIPLIER);
+            // 挖掘掉落翻倍
+            event.add(entityType, AttributesRegistry.MINING_DROP_MULTIPLIER);
         }
     }
 }

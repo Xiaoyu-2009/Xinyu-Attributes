@@ -14,6 +14,7 @@
     "attribute.name.xinyu_attributes.auto_destroy": "自动破坏",
     "attribute.name.xinyu_attributes.life_absorption": "生命吸取",
     "attribute.name.xinyu_attributes.kill_drop_multiplier": "击杀掉落翻倍",
+    "attribute.name.xinyu_attributes.mining_drop_multiplier": "挖掘掉落翻倍",
     
     "effect.xinyu_attributes.phasing": "穿墙",
     "effect.xinyu_attributes.water_walking": "水面行走",
