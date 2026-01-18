@@ -40,6 +40,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.AUTO_DESTROY);
             // 生命吸取
             event.add(entityType, AttributesRegistry.LIFE_ABSORPTION);
+            // 击杀掉落翻倍
+            event.add(entityType, AttributesRegistry.KILL_DROP_MULTIPLIER);
         }
     }
 }

@@ -24,13 +24,13 @@ public class ClientEvent {
 
         OreVisionRenderer.renderBlockOutlines(event);
 
-        if (event.getStage() == Stage.AFTER_SKY) {
+        /*if (event.getStage() == Stage.AFTER_SKY) {
             long timeOfDay = mc.level.getDayTime() % 24000;
 
             if (timeOfDay >= 13000 && timeOfDay < 23000) {
                 SkyBoxRenderer.renderSkyBoxEffect(event);
             }
-        }
+        }*/
     }
 
     @SubscribeEvent

@@ -77,4 +77,9 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> LIFE_ABSORPTION = ATTRIBUTES.register("life_absorption",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".life_absorption", 0, 0, 1)
             .setSyncable(true));
+
+    // 击杀掉落翻倍
+    public static final DeferredHolder<Attribute, Attribute> KILL_DROP_MULTIPLIER = ATTRIBUTES.register("kill_drop_multiplier",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".kill_drop_multiplier", 0, 0, Double.MAX_VALUE)
+            .setSyncable(true));
 }
