@@ -4,11 +4,13 @@ import net.xiaoyu.xinyu_attributes.client.renderer.*;
 import net.xiaoyu.xinyu_attributes.data.*;
 import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.entity.*;
+import net.minecraft.client.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent.Stage;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import org.jetbrains.annotations.*;
@@ -18,7 +20,17 @@ public class ClientEvent {
 
     @SubscribeEvent
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
+        Minecraft mc = Minecraft.getInstance();
+
         OreVisionRenderer.renderBlockOutlines(event);
+
+        if (event.getStage() == Stage.AFTER_SKY) {
+            long timeOfDay = mc.level.getDayTime() % 24000;
+
+            if (timeOfDay >= 13000 && timeOfDay < 23000) {
+                SkyBoxRenderer.renderSkyBoxEffect(event);
+            }
+        }
     }
 
     @SubscribeEvent
