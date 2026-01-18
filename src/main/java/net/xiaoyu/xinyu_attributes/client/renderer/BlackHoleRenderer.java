@@ -109,7 +109,6 @@ public class BlackHoleRenderer extends EntityRenderer<BlackHoleEntity> {
 
         BufferUploader.drawWithShader(ringBuffer.buildOrThrow());*/
         
-        RenderSystem.enableCull(); // 重新启用背面剔除以避免影响其他渲染
         RenderSystem.setShaderColor(originalRed, originalGreen, originalBlue, originalAlpha);
         /*RenderSystem.disableDepthTest();*/
 
