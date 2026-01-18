@@ -87,4 +87,9 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> MINING_DROP_MULTIPLIER = ATTRIBUTES.register("mining_drop_multiplier",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".mining_drop_multiplier", 0, 0, Double.MAX_VALUE)
             .setSyncable(true));
+
+    // 重力压制
+    public static final DeferredHolder<Attribute, Attribute> GRAVITY_SUPPRESSION = ATTRIBUTES.register("gravity_suppression",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".gravity_suppression", 0, 0, Double.MAX_VALUE)
+            .setSyncable(true));
 }

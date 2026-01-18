@@ -44,6 +44,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.KILL_DROP_MULTIPLIER);
             // 挖掘掉落翻倍
             event.add(entityType, AttributesRegistry.MINING_DROP_MULTIPLIER);
+            // 重力压制
+            event.add(entityType, AttributesRegistry.GRAVITY_SUPPRESSION);
         }
     }
 }

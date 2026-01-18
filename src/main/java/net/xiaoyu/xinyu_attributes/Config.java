@@ -12,6 +12,7 @@ public class Config {
     public static final ModConfigSpec.DoubleValue CLIMBING_UP_SPEED_VALUE;
     public static final ModConfigSpec.DoubleValue CLIMBING_DOWN_SPEED_VALUE;
     public static final ModConfigSpec.DoubleValue PROJECTILE_BOUNCE_RANGE;
+    public static final ModConfigSpec.DoubleValue GRAVITY_SUPPRESSION_FORCE;
     public static final ModConfigSpec.IntValue CROP_GROWTH_TICK_DELAY;
     public static final ModConfigSpec.IntValue ORE_VISION_UPDATE_TICK_INTERVAL;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> ORE_VISION_BLOCK_BLACKLIST;
@@ -57,6 +58,9 @@ public class Config {
         BLACK_HOLE_ABSORPTION_TIME = BUILDER
             .defineInRange("black_hole_absorption_time", 40, 0, Integer.MAX_VALUE);
 
+        GRAVITY_SUPPRESSION_FORCE = BUILDER
+            .defineInRange("gravity_suppression_force", 0.08, -Double.MAX_VALUE, Double.MAX_VALUE);
+        
         BUILDER.pop();
 
         SPEC = BUILDER.build();

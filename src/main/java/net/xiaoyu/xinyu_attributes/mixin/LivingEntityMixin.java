@@ -333,6 +333,38 @@ public abstract class LivingEntityMixin {
                 }
             }
         }
+        
+        if (!entity.getAttribute(AttributesRegistry.GRAVITY_SUPPRESSION).getModifiers().isEmpty()) {
+            double suppressionRadius = entity.getAttributeValue(AttributesRegistry.GRAVITY_SUPPRESSION);
+            
+            if (suppressionRadius > 0) {
+                AABB suppressionArea = new AABB(
+                    entity.getX() - suppressionRadius,
+                    entity.getY() - suppressionRadius,
+                    entity.getZ() - suppressionRadius,
+                    entity.getX() + suppressionRadius,
+                    entity.getY() + suppressionRadius,
+                    entity.getZ() + suppressionRadius
+                );
+
+                List<LivingEntity> entitiesInRange = entity.level().getEntitiesOfClass(
+                    LivingEntity.class,
+                    suppressionArea,
+                    targetEntity -> targetEntity != entity
+                );
+
+                for (LivingEntity affectedEntity : entitiesInRange) {
+                    Vec3 motion = affectedEntity.getDeltaMovement();
+
+                    if (motion.y > 0) {
+                        affectedEntity.setDeltaMovement(motion.x, 0, motion.z);
+                    }
+                    
+                    affectedEntity.setDeltaMovement(motion.x, motion.y - Config.GRAVITY_SUPPRESSION_FORCE.get(), motion.z);
+                    affectedEntity.setOnGround(false);
+                }
+            }
+        }
     }
 
     @Inject(method = "actuallyHurt", at = @At("TAIL"))
