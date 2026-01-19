@@ -59,13 +59,13 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	vec2 M = vec2(0);
     M -= vec2(M.x+sin(iTime*0.22), M.y-cos(iTime*0.22));
     M +=(iMouse.xy-iResolution.xy*.5)/iResolution.y;
-    float t = iTime*Velocity; 
-    vec3 col = vec3(0);  
+    float t = iTime*Velocity;
+    vec3 col = vec3(0);
     for(float i=0.; i<1.; i+=1./NUM_LAYERS){
         float depth = fract(i+t);
         float scale = mix(CanvasView, .5, depth);
         float fade = depth*smoothstep(1.,.9,depth);
-        col += StarLayer(uv*scale+i*453.2-iTime*.05+M)*fade;}   
+        col += StarLayer(uv*scale+i*453.2-iTime*.05+M)*fade;}
     fragColor = vec4(col,1.0);
 }
 

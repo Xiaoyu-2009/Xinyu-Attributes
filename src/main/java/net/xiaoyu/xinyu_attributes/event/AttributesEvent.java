@@ -46,6 +46,8 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.MINING_DROP_MULTIPLIER);
             // 重力压制
             event.add(entityType, AttributesRegistry.GRAVITY_SUPPRESSION);
+            // 永久着火
+            event.add(entityType, AttributesRegistry.PERMANENT_BURNING);
         }
     }
 }

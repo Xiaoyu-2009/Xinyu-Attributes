@@ -365,6 +365,14 @@ public abstract class LivingEntityMixin {
                 }
             }
         }
+
+        if (!entity.getAttribute(AttributesRegistry.PERMANENT_BURNING).getModifiers().isEmpty()) {
+            if (entity.getAttributeValue(AttributesRegistry.PERMANENT_BURNING) >= 0) {
+                if (!entity.isOnFire()) {
+                    entity.igniteForTicks(Integer.MAX_VALUE);
+                }
+            }
+        }
     }
 
     @Inject(method = "actuallyHurt", at = @At("TAIL"))

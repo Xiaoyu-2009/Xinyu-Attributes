@@ -92,4 +92,9 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> GRAVITY_SUPPRESSION = ATTRIBUTES.register("gravity_suppression",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".gravity_suppression", 0, 0, Double.MAX_VALUE)
             .setSyncable(true));
+
+    // 永久着火
+    public static final DeferredHolder<Attribute, Attribute> PERMANENT_BURNING = ATTRIBUTES.register("permanent_burning",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".permanent_burning", 0, 0, 0)
+            .setSyncable(true));
 }

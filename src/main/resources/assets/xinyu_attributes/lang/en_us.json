@@ -16,6 +16,7 @@
     "attribute.name.xinyu_attributes.kill_drop_multiplier": "Kill Drop Multiplier",
     "attribute.name.xinyu_attributes.mining_drop_multiplier": "Mining Drop Multiplier",
     "attribute.name.xinyu_attributes.gravity_suppression": "Gravity Suppression",
+    "attribute.name.xinyu_attributes.permanent_burning": "Permanent Burning",
     
     "effect.xinyu_attributes.phasing": "Phasing",
     "effect.xinyu_attributes.water_walking": "Water Walking",

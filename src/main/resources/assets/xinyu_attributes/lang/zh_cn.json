@@ -16,6 +16,7 @@
     "attribute.name.xinyu_attributes.kill_drop_multiplier": "击杀掉落翻倍",
     "attribute.name.xinyu_attributes.mining_drop_multiplier": "挖掘掉落翻倍",
     "attribute.name.xinyu_attributes.gravity_suppression": "重力压制",
+    "attribute.name.xinyu_attributes.permanent_burning": "永久着火",
     
     "effect.xinyu_attributes.phasing": "穿墙",
     "effect.xinyu_attributes.water_walking": "水面行走",
