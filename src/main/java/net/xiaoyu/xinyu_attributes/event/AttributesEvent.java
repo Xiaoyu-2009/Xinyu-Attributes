@@ -48,6 +48,10 @@ public class AttributesEvent {
             event.add(entityType, AttributesRegistry.GRAVITY_SUPPRESSION);
             // 永久着火
             event.add(entityType, AttributesRegistry.PERMANENT_BURNING);
+            // 锁定白天
+            event.add(entityType, AttributesRegistry.LOCK_DAYTIME);
+            // 锁定黑夜
+            event.add(entityType, AttributesRegistry.LOCK_NIGHTTIME);
         }
     }
 }

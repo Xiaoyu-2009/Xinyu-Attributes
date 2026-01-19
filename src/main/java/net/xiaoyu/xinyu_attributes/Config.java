@@ -21,6 +21,8 @@ public class Config {
     public static final ModConfigSpec.ConfigValue<List<? extends String>> POSITIVE_EFFECT_IMMUNITY_WHITELIST;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> POSITIVE_EFFECT_IMMUNITY_BLACKLIST;
     public static final ModConfigSpec.IntValue BLACK_HOLE_ABSORPTION_TIME;
+    public static final ModConfigSpec.IntValue LOCKED_DAYTIME_VALUE;
+    public static final ModConfigSpec.IntValue LOCKED_NIGHTTIME_VALUE;
     
     static {
         BUILDER.push("Buff Config");
@@ -60,6 +62,12 @@ public class Config {
 
         GRAVITY_SUPPRESSION_FORCE = BUILDER
             .defineInRange("gravity_suppression_force", 0.08, -Double.MAX_VALUE, Double.MAX_VALUE);
+        
+        LOCKED_DAYTIME_VALUE = BUILDER
+            .defineInRange("locked_daytime_value", 1000, 0, 13000);
+            
+        LOCKED_NIGHTTIME_VALUE = BUILDER
+            .defineInRange("locked_nighttime_value", 18000, 13000, 24000);
         
         BUILDER.pop();
 

@@ -97,4 +97,14 @@ public class AttributesRegistry {
     public static final DeferredHolder<Attribute, Attribute> PERMANENT_BURNING = ATTRIBUTES.register("permanent_burning",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".permanent_burning", 0, 0, 0)
             .setSyncable(true));
+
+    // 锁定白天
+    public static final DeferredHolder<Attribute, Attribute> LOCK_DAYTIME = ATTRIBUTES.register("lock_daytime",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".lock_daytime", 0, 0, 0)
+            .setSyncable(true));
+
+    // 锁定黑夜
+    public static final DeferredHolder<Attribute, Attribute> LOCK_NIGHTTIME = ATTRIBUTES.register("lock_nighttime",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".lock_nighttime", 0, 0, 0)
+            .setSyncable(true));
 }

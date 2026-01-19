@@ -372,6 +372,10 @@ public abstract class LivingEntityMixin {
                     entity.igniteForTicks(Integer.MAX_VALUE);
                 }
             }
+        } else {
+            if (entity.isOnFire()) {
+                entity.clearFire();
+            }
         }
     }
 
