@@ -383,7 +383,11 @@ public abstract class LivingEntityMixin {
     private void onActuallyHurt(DamageSource source, float amount, CallbackInfo ci) {
         if (source.getEntity() instanceof LivingEntity attacker && source.getEntity() != (Object) this &&
             !attacker.getAttribute(AttributesRegistry.LIFE_ABSORPTION).getModifiers().isEmpty()) {
-            attacker.heal(amount * (float) attacker.getAttributeValue(AttributesRegistry.LIFE_ABSORPTION));
+            double lifeAbsorptionValue = attacker.getAttributeValue(AttributesRegistry.LIFE_ABSORPTION);
+
+            if (lifeAbsorptionValue > 0) {
+                attacker.heal(amount * (float) lifeAbsorptionValue);
+            }
         }
     }
 
@@ -392,7 +396,11 @@ public abstract class LivingEntityMixin {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         if (!entity.getAttribute(AttributesRegistry.SHIELD_BREAK).getModifiers().isEmpty()) {
-            cir.setReturnValue(true);
+            double shieldBreakChance = entity.getAttributeValue(AttributesRegistry.SHIELD_BREAK);
+            
+            if (shieldBreakChance > 0 && Math.random() < shieldBreakChance) {
+                cir.setReturnValue(true);
+            }
         }
     }
 }

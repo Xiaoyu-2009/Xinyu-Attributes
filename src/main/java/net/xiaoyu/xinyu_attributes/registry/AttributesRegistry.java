@@ -55,12 +55,12 @@ public class AttributesRegistry {
 
     // 负面效果免疫
     public static final DeferredHolder<Attribute, Attribute> NEGATIVE_EFFECT_IMMUNITY = ATTRIBUTES.register("negative_effect_immunity",
-        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".negative_effect_immunity", 0, 0, 1)
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".negative_effect_immunity", 0, 0, 0)
             .setSyncable(true));
 
     // 正面效果免疫
     public static final DeferredHolder<Attribute, Attribute> POSITIVE_EFFECT_IMMUNITY = ATTRIBUTES.register("positive_effect_immunity",
-        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".positive_effect_immunity", 0, 0, 1)
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".positive_effect_immunity", 0, 0, 0)
             .setSyncable(true));
 
     // 破盾
@@ -75,7 +75,7 @@ public class AttributesRegistry {
 
     // 生命吸取
     public static final DeferredHolder<Attribute, Attribute> LIFE_ABSORPTION = ATTRIBUTES.register("life_absorption",
-        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".life_absorption", 0, 0, 1)
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".life_absorption", 0, 0, 0)
             .setSyncable(true));
 
     // 击杀掉落翻倍
