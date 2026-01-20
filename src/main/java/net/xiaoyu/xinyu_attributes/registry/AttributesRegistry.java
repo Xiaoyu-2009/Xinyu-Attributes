@@ -98,7 +98,7 @@ public class AttributesRegistry {
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".permanent_burning", 0, 0, 0)
             .setSyncable(true));
 
-    // 锁定白天
+    // 锁定日间
     public static final DeferredHolder<Attribute, Attribute> LOCK_DAYTIME = ATTRIBUTES.register("lock_daytime",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".lock_daytime", 0, 0, 0)
             .setSyncable(true));
@@ -106,5 +106,10 @@ public class AttributesRegistry {
     // 锁定黑夜
     public static final DeferredHolder<Attribute, Attribute> LOCK_NIGHTTIME = ATTRIBUTES.register("lock_nighttime",
         () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".lock_nighttime", 0, 0, 0)
+            .setSyncable(true));
+
+    // 对视免疫
+    public static final DeferredHolder<Attribute, Attribute> STARE_IMMUNITY = ATTRIBUTES.register("stare_immunity",
+        () -> new RangedAttribute("attribute.name."+ XinYuAttributes.MOD_ID +".stare_immunity", 0, 0, 0)
             .setSyncable(true));
 }

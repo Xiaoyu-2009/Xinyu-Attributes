@@ -123,7 +123,7 @@ public abstract class LivingEntityMixin {
     
     @SuppressWarnings("deprecation")
     @Inject(method = "tick", at = @At("TAIL"))
-    private void onTickCheckProjectileBounce(CallbackInfo ci) {
+    private void onTick(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         if (!entity.getAttribute(AttributesRegistry.NEGATIVE_EFFECT_IMMUNITY).getModifiers().isEmpty()) {

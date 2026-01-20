@@ -19,6 +19,7 @@
     "attribute.name.xinyu_attributes.permanent_burning": "Permanent Burning",
     "attribute.name.xinyu_attributes.lock_daytime": "Lock Daytime",
     "attribute.name.xinyu_attributes.lock_nighttime": "Lock Nighttime",
+    "attribute.name.xinyu_attributes.stare_immunity": "Stare Immunity",
     
     "effect.xinyu_attributes.phasing": "Phasing",
     "effect.xinyu_attributes.water_walking": "Water Walking",
