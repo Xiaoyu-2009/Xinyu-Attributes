@@ -69,6 +69,41 @@
       "intrinsic": 0.0,
       "order": 18000,
       "usePercent": true
+    },
+    "xinyu_attributes:kill_drop_multiplier": {
+      "intrinsic": 0.0,
+      "order": 23000,
+      "usePercent": false
+    },
+    "xinyu_attributes:mining_drop_multiplier": {
+      "intrinsic": 0.0,
+      "order": 23001,
+      "usePercent": false
+    },
+    "xinyu_attributes:gravity_suppression": {
+      "intrinsic": 0.0,
+      "order": 17000,
+      "usePercent": false
+    },
+    "xinyu_attributes:permanent_burning": {
+      "intrinsic": 0.0,
+      "order": 24000,
+      "usePercent": false
+    },
+    "xinyu_attributes:lock_daytime": {
+      "intrinsic": 0.0,
+      "order": 25000,
+      "usePercent": false
+    },
+    "xinyu_attributes:lock_nighttime": {
+      "intrinsic": 0.0,
+      "order": 25001,
+      "usePercent": false
+    },
+    "xinyu_attributes:stare_immunity": {
+      "intrinsic": 0.0,
+      "order": 26000,
+      "usePercent": false
     }
   }
 }
