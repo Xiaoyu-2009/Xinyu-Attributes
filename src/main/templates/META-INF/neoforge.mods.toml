@@ -30,7 +30,7 @@ version="${mod_version}" #mandatory
 displayName="${mod_name}" #mandatory
 
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="logo.png" #optional
+logoFile="assets/xinyu_attributes/icon.png" #optional
 
 # A URL for the "homepage" for this mod, displayed in the mod UI
 # displayURL="${author_address}" #optional
