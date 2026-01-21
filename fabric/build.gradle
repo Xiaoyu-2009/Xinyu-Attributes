@@ -38,6 +38,9 @@ dependencies {
 
     // 模组菜单
     modImplementation "curse.maven:modmenu-308702:5810603"
+
+    // Cloth Config API
+    modImplementation "curse.maven:cloth-config-348521:5729125"
 }
 
 processResources {

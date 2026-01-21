@@ -4,7 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.xiaoyu.xinyu_attributes.fabric.client.registry.renderer.ShaderRegistryImpl;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.xiaoyu.xinyu_attributes.client.renderer.*;
-import net.xiaoyu.xinyu_attributes.registry.EntityRegistry;
+import net.xiaoyu.xinyu_attributes.registry.*;
 import net.xiaoyu.xinyu_attributes.entity.*;
 import net.minecraft.world.entity.*;
 
