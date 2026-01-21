@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "GPL-3.0"
+
+[[mods]]
+modId = "xinyu_attributes"
+version = "1.0.0"
+displayName = "Xiaoyu Attributes"
+logoFile = "assets/xinyu_attributes/icon.png"
+authors = "Xiaoyu_2009"
+description = '''
+This mod adds some attribute modifiers to the game.
+'''
+
+[[dependencies.xinyu_attributes]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.xinyu_attributes]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.xinyu_attributes]]
+modId = "architectury"
+type = "required"
+versionRange = "[13.0.8,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "xinyu_attributes.mixins.json"
