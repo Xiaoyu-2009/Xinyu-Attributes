@@ -1,0 +1,115 @@
+package net.xiaoyu.xinyu_attributes.registry;
+
+import net.xiaoyu.xinyu_attributes.XinyuAttributes;
+import dev.architectury.registry.registries.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.ai.attributes.*;
+
+public class AttributesRegistry {
+    public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(XinyuAttributes.MOD_ID, Registries.ATTRIBUTE);
+
+    // 火焰抗性
+    public static final RegistrySupplier<Attribute> FIRE_RESISTANCE = ATTRIBUTES.register("fire_resistance",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".fire_resistance", 0, 0, 1)
+            .setSyncable(true));
+
+    // 冰冻抗性
+    public static final RegistrySupplier<Attribute> FREEZE_RESISTANCE = ATTRIBUTES.register("freeze_resistance",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".freeze_resistance", 0, 0, 1)
+            .setSyncable(true));
+
+    // 毒素抗性
+    public static final RegistrySupplier<Attribute> POISON_RESISTANCE = ATTRIBUTES.register("poison_resistance",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".poison_resistance", 0, 0, 1)
+            .setSyncable(true));
+
+    // 凋零抗性
+    public static final RegistrySupplier<Attribute> WITHER_RESISTANCE = ATTRIBUTES.register("wither_resistance",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".wither_resistance", 0, 0, 1)
+        .setSyncable(true));
+
+    // 声波抗性
+    public static final RegistrySupplier<Attribute> SONIC_RESISTANCE = ATTRIBUTES.register("sonic_resistance",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".sonic_resistance", 0, 0, 1)
+            .setSyncable(true));
+
+    // 弹射物抗性
+    public static final RegistrySupplier<Attribute> PROJECTILE_RESISTANCE = ATTRIBUTES.register("projectile_resistance",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".projectile_resistance", 0, 0, 1)
+            .setSyncable(true));
+
+    // 单次伤害上限
+    public static final RegistrySupplier<Attribute> SINGLE_DAMAGE_LIMIT = ATTRIBUTES.register("single_damage_limit",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".single_damage_limit", 0, 0, Double.MAX_VALUE)
+            .setSyncable(true));
+
+    // 单次百分比伤害上限
+    public static final RegistrySupplier<Attribute> SINGLE_PERCENTAGE_DAMAGE_LIMIT = ATTRIBUTES.register("single_percentage_damage_limit",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".single_percentage_damage_limit", 0, 0, 1)
+            .setSyncable(true));
+
+    // 弹射物速度
+    public static final RegistrySupplier<Attribute> PROJECTILE_SPEED = ATTRIBUTES.register("projectile_speed",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".projectile_speed", 0, -Double.MAX_VALUE, Double.MAX_VALUE)
+            .setSyncable(true));
+
+    // 负面效果免疫
+    public static final RegistrySupplier<Attribute> NEGATIVE_EFFECT_IMMUNITY = ATTRIBUTES.register("negative_effect_immunity",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".negative_effect_immunity", 0, 0, 0)
+            .setSyncable(true));
+
+    // 正面效果免疫
+    public static final RegistrySupplier<Attribute> POSITIVE_EFFECT_IMMUNITY = ATTRIBUTES.register("positive_effect_immunity",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".positive_effect_immunity", 0, 0, 0)
+            .setSyncable(true));
+
+    // 破盾
+    public static final RegistrySupplier<Attribute> SHIELD_BREAK = ATTRIBUTES.register("shield_break",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".shield_break", 0, 0, 1)
+            .setSyncable(true));
+
+    // 自动破坏
+    public static final RegistrySupplier<Attribute> AUTO_DESTROY = ATTRIBUTES.register("auto_destroy",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".auto_destroy", 0, 0, Double.MAX_VALUE)
+            .setSyncable(true));
+
+    // 生命吸取
+    public static final RegistrySupplier<Attribute> LIFE_ABSORPTION = ATTRIBUTES.register("life_absorption",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".life_absorption", 0, 0, 0)
+            .setSyncable(true));
+
+    // 击杀掉落翻倍
+    public static final RegistrySupplier<Attribute> KILL_DROP_MULTIPLIER = ATTRIBUTES.register("kill_drop_multiplier",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".kill_drop_multiplier", 0, 0, Double.MAX_VALUE)
+            .setSyncable(true));
+
+    // 挖掘掉落翻倍
+    public static final RegistrySupplier<Attribute> MINING_DROP_MULTIPLIER = ATTRIBUTES.register("mining_drop_multiplier",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".mining_drop_multiplier", 0, 0, Double.MAX_VALUE)
+            .setSyncable(true));
+
+    // 重力压制
+    public static final RegistrySupplier<Attribute> GRAVITY_SUPPRESSION = ATTRIBUTES.register("gravity_suppression",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".gravity_suppression", 0, 0, Double.MAX_VALUE)
+            .setSyncable(true));
+
+    // 永久着火
+    public static final RegistrySupplier<Attribute> PERMANENT_BURNING = ATTRIBUTES.register("permanent_burning",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".permanent_burning", 0, 0, 0)
+            .setSyncable(true));
+
+    // 锁定日间
+    public static final RegistrySupplier<Attribute> LOCK_DAYTIME = ATTRIBUTES.register("lock_daytime",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".lock_daytime", 0, 0, 0)
+            .setSyncable(true));
+
+    // 锁定黑夜
+    public static final RegistrySupplier<Attribute> LOCK_NIGHTTIME = ATTRIBUTES.register("lock_nighttime",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".lock_nighttime", 0, 0, 0)
+            .setSyncable(true));
+
+    // 对视免疫
+    public static final RegistrySupplier<Attribute> STARE_IMMUNITY = ATTRIBUTES.register("stare_immunity",
+        () -> new RangedAttribute("attribute.name."+ XinyuAttributes.MOD_ID +".stare_immunity", 0, 0, 0)
+            .setSyncable(true));
+}

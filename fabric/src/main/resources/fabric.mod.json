@@ -15,7 +15,7 @@
       "net.xiaoyu.xinyu_attributes.fabric.XinyuAttributesFabric"
     ],
     "client": [
-      "net.xiaoyu.xinyu_attributes.fabric.client.ClientEvent"
+      "net.xiaoyu.xinyu_attributes.fabric.client.ClientInit"
     ]
   },
   "mixins": [
