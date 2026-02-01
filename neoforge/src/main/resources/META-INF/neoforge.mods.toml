@@ -3,6 +3,9 @@ loaderVersion = "[4,)"
 #issueTrackerURL = ""
 license = "GPL-3.0"
 
+[[mixins]]
+config = "xinyu_attributes.mixins.json"
+
 [[mods]]
 modId = "xinyu_attributes"
 version = "${version}"
@@ -33,6 +36,3 @@ This mod adds some attribute modifiers to the game.
     versionRange = "[13.0.8,)"
     ordering = "AFTER"
     side = "BOTH"
-
-[[mixins]]
-config = "xinyu_attributes.mixins.json"
